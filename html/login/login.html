@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="ui-page-login bg-fff">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/lib/common.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<title></title>
+	</head>
+
+	<body class="bg-fff">
+		<!-- 		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back iconfont icon-close mui-pull-left"></a>
+			<h1 class="mui-title">帐号密码登录</h1>
+			<a class="mui-pull-right head-rightbtn" id="btn_reg">注册</a>
+		</header> -->
+
+		<div class="mui-content  ">
+			<div>
+				<img src="../../images/ypyw/logo.png" width="60" height="60" style="margin:20px ;" alt="Dog" />
+			</div>
+			<div>
+				<a style="color: #000000; font-size:22px;margin: 20px;">餐厅登录</a>
+			</div>
+
+
+			<div class="mui-input-row" style="background: #E6E6E6; margin: 20px;  ">
+				<label><img src="../../images/ypyw/login_icon_phone.png" style="width: 20px;height: 25px;"></label>
+				<input type="text" id='inpt_mobile' class="mui-input-clear" placeholder="请输入手机号">
+			</div>
+
+			<div class="mui-input-row" style="background: #E6E6E6; margin: 20px;  ">
+				<label><img src="../../images/ypyw/login_icon_passward.png" style="width: 20px;height: 25px;"></label>
+				<input type="password" id='inpt_pwd' class="mui-input-password" placeholder="请输入密码">
+			</div>
+
+			<div>
+
+				<a class="cor-lan bor-no mui-pull-right"style="color: #007AFF; font-size:12px;margin: 20px;">忘记密码请联系我司业务人员</a>
+			</div>
+			</div>
+
+			<div style="margin: 20px;">
+				<button id='btn_login' class=" mui-btn-block mui-btn-warning" style="border-radius:40px;background: #FF8400;margin-top: 20px; ">登录</button>
+			</div>
+
+
+			<div style="margin-top: 20%;margin-left: 20px;margin-right: 20px;">
+				<button id='btn_friend' style=" width: 100%; border-color: #FAB52F ; border-radius:40px; margin-top: 20px;color: #FF8400">我想成为合作餐厅</button>
+			</div>
+
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		//必须顺序加载
+		// script(['../../js/login/OAuth.js', '../../js/login/login.js']);
+
+		mui.init();
+		mui.plusReady(function() {
+			// storage.init();
+			var firstGuide = localStorage.getItem("guide");
+			mui.toast("firstGuide000...." + firstGuide)
+			if (firstGuide != "yes") {
+				window.location.href = '../hello.html'; //启动引导页
+			}
+
+
+
+			var btn_login = document.getElementById("btn_login");
+			var inpt_mobile = document.getElementById("inpt_mobile");
+			var inpt_pwd = document.getElementById("inpt_pwd");
+			var btn_friend = document.getElementById("btn_friend");
+
+			btn_friend.addEventListener("tap", function() {
+				// mui.toast("---------------")
+				// window.location.href='../friend.html';
+				// 传递参数
+                mui.openWindow({url:'../friend.html',extras:{id:'100'}});
+			});
+
+
+			btn_login.addEventListener("tap", function() {
+
+				if (inpt_mobile.value.trim() == "") {
+					mui.toast("请输入手机号");
+					//inpt_mobile.focus();
+				} else if (inpt_pwd.value.trim() == "") {
+					mui.toast("请输入密码");
+				} else {
+					mui.ajax('http://www.weather.com.cn/data/sk/101110101.html', {
+						data: {
+							username: 'username',
+							password: 'password'
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						success: function(data) {
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							console.log(data.weatherinfo.city);
+							window.location.href='../main.html';
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+							mui.toast("服务器出错啦....")
+						}
+					});
+
+				}
+
+
+
+			})
+		})
+	</script>
+
+</html>

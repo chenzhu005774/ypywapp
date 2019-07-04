@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" style=" height: 120px;">
+			</>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style=" color: #FAB52F;  font-size: 110px;"></a>
+
+		</header>
+		vertical-align:middle;
+		<div class="mui-content">
+			<div style=" height: 180px;margin-top: 55px;vertical-align:middle;margin-left: 20px">
+				<a style="color: #000000;  vertical-align:middle;font-size:32px;line-height:180px;">我想成为合作餐厅</a>
+
+				<img src="../images/ypyw/icon_coperate.png" text-align="center" height="140" style=" vertical-align:middle ; margin-left: 50%;" />
+			</div>
+			<div>
+				<label>餐厅名称</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入用户名">
+				<!-- <form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>餐厅名称</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入用户名">
+					</div>
+					<div class="mui-input-row">
+						<label>餐厅地点</label>
+						<input type="password" class="mui-icon-clear" placeholder="请输入密码">
+					</div>
+					
+					<div class="mui-button-row">
+						<button type="button" class="mui-btn mui-btn-primary">确认</button>
+						<button type="button" class="mui-btn mui-btn-danger">取消</button>
+					</div>
+				</form> -->
+			</div>
+
+
+
+
+		</div>
+
+
+
+
+	</body>
+	<script>
+		mui.init();
+		mui.back = function(event) {
+			plus.webview.currentWebview().close();
+		}
+	</script>
+</html>

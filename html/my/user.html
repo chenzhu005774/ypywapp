@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(['../../css/reset.css']);
+		</script>
+		<style type="text/css">
+			.mui-bar-nav~.mui-content .mui-pull-top-pocket {
+				top: 0px;
+			}
+
+			#headimg {
+				background: #eee;
+			}
+
+			.bg {
+				height: 170px;
+				background: #FF8400;
+				/* 一些不支持背景渐变的浏览器 	255 193 37 FF8400 */
+				background: -moz-linear-gradient(top, #FF8400, rgba(255, 132, 0, 0.5));
+				background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FF8400), to(rgba(255, 132, 0, 0.6)));
+				background: -o-linear-gradient(top, #FF8400, rgba(255, 132, 0, 0.9));
+				position: relative;
+			}
+
+			.borf {
+				border: 3px solid #fff;
+			}
+
+			#editSignature {
+				width: 80%;
+				margin-left: 10%;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				position: relative;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 		<header class="mui-bar mui-bar-nav head-resetnavbar1">
+			<a class="iconfont icon-mymessage head-righticonbtn pstn-r cor-fff ckecklogin" data-loginevent="loginEvent.myMsg()" data-loginbackid="my/myMsg.html" id="myMsg">
+				<span class="" id="msgStatus"></span>
+			</a>
+		</header> -->
+
+		<div class="mui-content pt0 mui-scroll-wrapper" id="pullrefresh">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mb1rem bg tblv-nl" style="position: relative;">
+					<li class="mui-left ptb10" >
+						 	<img class="bor-r50p mt15 img50 borf" src="../../images/defuser.jpg" style="position:absolute;left:20px;" />
+						 	<a style="position:absolute;left:110px;top:45px; color: #FFFFFF;font-size: 20px;">18525536911</a>
+							<a style="position:absolute;left:240px;top:44px; color: #FFFFFF;font-size: 6px;  width: 40px;text-align:center;  border-radius:5px;  border:1px solid #FFFFFF; ">餐厅ID</a>
+						 	<a style="position:absolute;left:110px;top:70px; color: #FFFFFF;font-size: 18px;">餐厅名称:大富豪的</a>
+					</li>
+					<canvas id="canvas" height="85" style="position:absolute;bottom: 0;left:0px;z-index:-1;width: 100%;"></canvas>
+				</ul>
+				<ul class="mui-table-view mb1rem tblv-nl">
+					<li class="mui-table-view-cell mui-media" id="opentime">
+						<img class="mui-media-object mui-pull-left" style="width: 20px;height: 20px;" src="../../images/ypyw/icon_open_time.png">
+						<a class="mui-navigate-right ckecklogin" style="margin-left:35px;">营业时间设置</a>
+					</li>
+					<li class="mui-table-view-cell mui-media" id="dishsupply">
+						<img class="mui-media-object mui-pull-left" style="width: 20px;height: 20px;" src="../../images/ypyw/icon_dish_supply.png">
+						<a class="mui-navigate-right ckecklogin" style="margin-left:35px;">菜品供应管理</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view mb1rem tblv-nl"id="packfee">
+					<li class="mui-table-view-cell mui-media">
+						<img class="mui-media-object mui-pull-left" style="width: 20px;height: 20px;" src="../../images/ypyw/icon_package_fee.png">
+						<a class="mui-navigate-right ckecklogin" style="margin-left:35px;">包装费设置</a>
+					</li>
+					<li class="mui-table-view-cell mui-media" id="autoaccept">
+						<img class="mui-media-object mui-pull-left" style="width: 20px;height: 20px;" src="../../images/ypyw/icon_auto_accept.png">
+						<a class="mui-navigate-right ckecklogin" style="margin-left:35px;">自动接单设置</a>
+					</li>
+				</ul>
+
+				<ul class="mui-table-view mb1rem tblv-nl" id="feedback">
+					<li class="mui-table-view-cell mui-media">
+						<img class="mui-media-object mui-pull-left" style="width: 20px;height: 20px;" src="../../images/ypyw/icon_feedback.png">
+						<a class="mui-navigate-right ckecklogin" style="margin-left:35px;">意见反馈</a>
+					</li>
+				</ul>
+
+
+
+			</div>
+		</div>
+		<script type="text/html" id="user_view">
+			{{if data.IsLogin}}
+			<div class="mui-text-center">
+				<img class="mt15 bor-r50p img50 borf ckecklogin" src="{{data.ImgUrl}}" id="headimg" data-loginevent="loginEvent.upload_headimg()" />
+			</div>
+			<h5 class="cor-fff fs17">{{data.NickName}}</h5>
+			<p class="ckecklogin cor-fff" id="editSignature" data-loginevent="loginEvent.editSignature()" data-loginbackid="my/user.html">{{data.Signature}} <i class="iconfont icon-edit"></i></p>
+
+			{{else}}
+			<div class="ckecklogin" id="goLogin" data-loginbackid="my/user.html" id="user_warp">
+				<img class="bor-r50p mt15 img50 borf" src="../../images/defuser.jpg" />
+				<h5 class="cor-fff lh30">请先登录/注册 </h5>
+			</div> {{/if}}
+		</script>
+		<script type="text/javascript">
+			//必须顺序加载
+			script(['../../js/my/user.js']);
+		</script>
+	</body>
+
+</html>

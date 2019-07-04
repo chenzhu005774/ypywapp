@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(['../../css/pk/pk.css']);
+		</script>
+
+		<style type="text/css">
+			.match_s3 {
+				margin-top: 26px;
+			}
+		</style>
+	</head>
+	
+
+	<body style="background-color: #fffffff;">
+		<header class="mui-bar mui-bar-nav bg4b">
+
+			<h1 class="mui-title" style="vertical-align:middle">订单列表</h1>
+			<img id="search" class="mui-pull-right  head-righticonbtn imgabsolutecenter" width="20px" src="../../images/ypyw/icon_setting.png" />
+		</header>
+		<nav class="mui-bar mui-bar-tab kidNav bg4b">
+
+
+			<a class="mui-tab-item mui-active" data-type="1">
+				<span class="mui-tab-label">全部订单<i></i></span>
+			</a>
+			<a class="mui-tab-item" data-type="2">
+				<span class="mui-tab-label">等待接单<i></i></span>
+			</a>
+
+			<a class="mui-tab-item" data-type="3">
+				<span class="mui-tab-label">已接单<i></i></span>
+			</a>
+
+			<a class="mui-tab-item" data-type="4" id="myfriendmatch">
+				<span class="mui-tab-label">已完成<i></i></span>
+			</a>
+			<a class="mui-tab-item" data-type="5" id="">
+				<span class="mui-tab-label">已取消<i></i></span>
+			</a>
+
+
+		</nav>
+		<!--约战-->
+		<!-- <div id="war" class="ckecklogin" data-loginevent="pkEvent.goPK()" data-loginbackid="pk/war.html">
+			
+		</div> -->
+
+		<!-- 这里就是上下拉刷新的 -->
+		<div class="mui-content mui-scroll-wrapper bgbig" id="pullrefresh">
+			<div class="mui-scroll">
+				<ul class="mui-table-view tblv-nl" id="list_warp">
+
+					<li id="match_{{item.MatchId}}" class="mui-table-view-cell mui-media ">
+						<!-- 这是上面的那个颜色 -->
+						<div class="itembig-pay"></div>
+						<!-- 这是下面的那一大块  -->
+						<div class="detail" data-id="{{item.MatchId}}">
+							<!-- 这是下面的那一大块 里面的除了接单的部分  -->
+							<div id="itemcontent">
+								<div style="display:inline-block ;width: 100%;">
+									<a class="names" style="color:#000000;vertical-align:middle;">订单号:</a>
+									<a id="orderid" class="names" style="color:#000000;vertical-align:middle;">001101101</a>
+									<a id="paystatus" style="  vertical-align:middle; float: right;">已支付</a>
+								</div>
+								<img src="../../images/xuline.png" width="100%" height="8px" />
+								<div style="display:inline-block">
+									<a id="orderid" class="names" style="color:#555555;">用户:</a>
+									<a id="number" class="names" style="color:#555555;">13555544488</a>
+								</div>
+
+
+								<div style="margin-top:10px;margin-left: 25px; >
+								  	  <a id=" fristname" class="names" style="color:#000000; vertical-align:middle">西蓝花菜</a>
+									<a id="fristname" class="names" style="color:#555555; vertical-align:middle">等</a>
+									<a id="number" class="names" style="color:#FF8400;  vertical-align:middle">3</a>
+									<a class="names" style="color:#555555; vertical-align:middle">件商品</a>
+									<a id="money" style="color:#FF8400; font-size:40px; vertical-align:middle;float:right">￥36</a>
+								</div>
+								<div style="display:inline-block; margin-top:10px">
+									<a id="orderid" class="names" style="color:#555555;">地址:</a>
+									<a id="number" class="names" style="color:#555555;">北京市朝阳区天安门广场124号</a>
+								</div>
+								<img src="../../images/xuline.png" width="100%" height="8px" />
+							</div>
+
+							<!-- 这是下面的那一大块  接单的部分  -->
+							<div style=" margin-top:5px;">
+								<a id="orderid" class="names" style="color:#ED5854;vertical-align:middle;">拒绝</a>
+								<a id="acc" class="abutton" style="width:60px;vertical-align:middle;">接单</a>
+							</div>
+
+						</div>
+
+
+					</li>
+
+
+
+
+				</ul>
+			</div>
+		</div>
+
+
+
+		<!-- 单条数据 -->
+		<!-- 		<script type="text/html" id="detail_view">
+
+			<div class="detail" data-id="{{item.MatchId}}">
+				<img class="mui-media-object mui-pull-left img4r loadthumb defuserimg" data-url="{{item.ImgUrl}}" data-wh="128,128">
+				<div class="mui-media-body">
+					<h5 class="mui-col-xs-9 mui-ellipsis col4b">{{item.MatchName}}</h5>
+					<p class="mui-row">
+						<span class="mui-col-xs-8  mui-ellipsis">{{item.MatchBeginTime}}</span>
+						<span class="mui-col-xs-8  mui-ellipsis">人数<strong>{{item.PlayerJoinNum}}</strong>/{{item.PlayerMaxNum}}</span>
+					</p>
+				</div>
+				<p class="mui-row">
+					<span class="mui-col-xs-12  mui-ellipsis">
+									<i class="iconfont icon-shop fs12"></i>
+									{{item.StoreName}} {{if item.distance}}
+									{{item.distance}}m									
+									{{/if}}
+									</span>
+				</p>
+			</div>
+			{{if item.JoinFriendNum>0}}
+			<div class="peoplewarp">
+				<div class="mui-col-xs-12 imgbox">
+					<span>{{item.JoinFriendNum}}个好友参加</span> {{each item.JoinFriend as playeritem}}
+					<a>
+						<img class="loadthumb defuserimg" data-url="{{playeritem.ImgUrl}}" data-wh="50,50" />
+					</a>
+					{{/each}}
+					<a class="names">
+						{{each item.JoinFriend as playeritem}} {{playeritem.ShowName}}、 {{/each}}
+					</a>
+				</div>
+			</div>
+			{{/if}}
+			<span class="status match_s{{item.Status}}">{{item.StatusName}}</span>
+			<div class="btn_warp">
+				{{if item.Status==1}} {{if (item.InviteStatus!="1" && item.WhetherJoin=="N" && item.IsFixed!="1") || (item.IsFixed=="1"&& item.IsCanJoin=="Y")}}
+				<button class="btnlan join ckecklogin" data-loginevent="pkEvent.joinPK({{item.MatchId}})" data-loginbackid="pk/pk.html">加入</button> {{else if item.InviteStatus=="1"}}
+				<button class="btnlan accept ckecklogin" data-loginevent="pkEvent.acceptPK({{item.MatchId}})" data-loginbackid="pk/pk.html">接受</button>
+				<button class="btndef refuse ckecklogin" data-loginevent="pkEvent.refusePK({{item.MatchId}})" data-loginbackid="pk/pk.html">拒绝</button> {{/if}} {{/if}}
+			</div>
+			{{if item.InviteStatus!=""}}
+			<div class="yqstatus yq_s{{item.InviteStatus}}">
+				{{if item.InviteStatus=="1"}}
+				<i>邀</i> {{else if item.InviteStatus=="2"}}
+				<i>接</i> {{else if item.InviteStatus=="3"}}
+				<i>拒</i> {{/if}}
+			</div>
+			{{/if}}
+
+		</script> -->
+
+		<!-- 这里就是模板的样子 -->
+		<script type="text/html" id="list_view">
+			{{if data==null||data.length==0}}
+			<div class="nodata">暂无内容11111222{{data }}</div>
+			{{else}}
+			
+			{{each data as item}}
+			<li id="match_{{item.MatchId}}" class="mui-table-view-cell mui-media  ">
+				
+				{{if item.author_name.length>4}}
+			    	<div class="itembig-acc"></div>
+				{{/if}}
+				
+				{{if item.author_name.length<5}}
+					<div class="itembig-pay"></div>
+				{{/if}}
+				
+				<!-- 这是下面的那一大块  -->
+				  <div class="detail"  data-id="{{item.MatchId}}">
+												<!-- 这是下面的那一大块 里面的除了接单的部分  -->
+				         <div id="itemcontent">
+								<div style="display:inline-block ;width: 100%;">
+										<a class="names" style="color:#000000;vertical-align:middle;">订单号:</a>
+										<a id="orderid" class="names" style="color:#000000;vertical-align:middle;">001101101</a>
+										<a id="paystatus" style="  vertical-align:middle; float: right;">已支付</a>
+								</div>
+								 <img src="../../images/xuline.png" width="100%" height="8px" />
+								<div style="display:inline-block">
+										<a id="orderid" class="names" style="color:#555555;">用户:</a>
+										<a id="number" class="names" style="color:#555555;">13555544488</a>
+								</div>
+												                           	
+												                           	
+								<div style="margin-top:10px;margin-left: 25px; >
+										<a id=" fristname" class="names" style="color:#000000; vertical-align:middle">西蓝花菜</a>
+										<a id="fristname" class="names" style="color:#555555; vertical-align:middle">等</a>
+										<a id="number" class="names" style="color:#FF8400;  vertical-align:middle">3</a>
+										<a class="names" style="color:#555555; vertical-align:middle">件商品</a>
+										<a id="money" style="color:#FF8400; font-size:40px; vertical-align:middle;float:right">￥36</a>
+								</div>
+								<div style="display:inline-block; margin-top:10px">
+										<a id="orderid" class="names" style="color:#555555;">地址:</a>
+										<a id="number" class="names" style="color:#555555;">北京市朝阳区天安门广场124号</a>
+								</div>
+								<img src="../../images/xuline.png" width="100%" height="8px" />   
+						 </div>
+				                         	
+												<!-- 这是下面的那一大块  接单的部分  -->
+						 <div style=" margin-top:5px;">
+								 <a id="orderid" class="names" style="color:#ED5854;vertical-align:middle;">拒绝</a>
+								 <a id="acc" class="abutton" style="width:60px;vertical-align:middle;">接单</a>
+						 </div>
+												
+				</div>
+				
+			</li>
+			{{/each}} {{/if}}
+			
+		</script>
+
+
+
+		<script type="text/javascript">
+			//必须顺序加载
+			script(['../../js/lib/plus.js', '../../js/pk/pk.js']);
+		</script>
+	</body>
+
+</html>

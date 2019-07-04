@@ -1,0 +1,76 @@
+@charset "utf-8";
+#city {
+	border: none;
+}
+.refuse{
+	/* 拒绝按钮class */
+}
+.appcet{
+/* 接受的按钮class */	
+}
+.imgabsolutecenter{
+	/* 绝对布局居中 */
+    position: absolute;  
+	top: 0;
+	right: 20px;
+	bottom: 0;
+    margin: auto;  
+}
+.abutton{ 
+      width:60px;
+	  background-color:#FF8400;
+	  text-align:center; 
+	  border-radius:15px; 
+	  color:#ffffff;
+	  vertical-align:middle;
+	  float:right;
+}
+.liRight {
+	position: absolute;
+	top: 26px;
+	right: 10px;
+	font-size: 12px;
+	color: #999;
+}
+.cut {
+	position: absolute;
+	top: 54px;
+	right: 15px;
+	color: #999;
+	font-size: 12px;
+}
+
+.cut i {
+	font-size: 16px;
+}
+
+#comment {
+	color: #fff!important;
+	background: #13D1BE;
+	border-radius: 4px;
+	padding: 0 5px;
+	line-height: 22px;
+	position: relative;
+	top: 10px;
+}
+
+.recently p {
+	text-indent: 15px;
+	line-height: 1;
+}
+
+.stoList {}
+
+.item {
+	float: left;
+	background: #fff;
+	width: 21%;
+	line-height: 28px;
+	margin: 0 2% 10px 2%;
+}
+
+#delete {
+	position: relative;
+	top: -3px;
+	right: 12px;
+}

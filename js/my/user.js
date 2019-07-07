@@ -12,7 +12,9 @@ mui.init(
 	},
 	beforeback: function() {
 		appPage.closeLogin();
-	}
+	},
+	
+	
 }
 
 );
@@ -20,6 +22,11 @@ mui.init(
 mui.plusReady(function() {
 	
 	storage.init();
+	$("#resname").text(localStorage.getItem("resname"));
+	$("#phone").text(localStorage.getItem("phone"));
+	
+	
+	
 	//initPage();
 	//	document.getElementById("test").addEventListener("tap", function() {
 	//		openNew("test.html");

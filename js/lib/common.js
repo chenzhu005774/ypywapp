@@ -1,5 +1,5 @@
 //api连接前缀
-var APP_DOMAIN = '';
+var APP_DOMAIN = 'http://gazi.free.idcfengye.com/api/';
 
 //为true输出日志
 var debug = true;
@@ -939,7 +939,7 @@ function log(data) {
 		if(typeof(data) == "object") {
 			console.log(JSON.stringify(data)); //console.log(JSON.stringify(data, null, 4));
 		} else {
-			console.log(data);
+			// console.log(data);
 		}
 	}
 }
@@ -1070,7 +1070,8 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 	if(showwait)
 		appUI.showWaiting();
 	parm.hmac = md5sign(parm);
-	mui.ajax(APP_DOMAIN + method, {
+	// mui.ajax(APP_DOMAIN + method, {
+		mui.ajax(  method, {
 		data: parm,
 		dataType: 'json', //要求服务器返回json格式数据
 		type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST

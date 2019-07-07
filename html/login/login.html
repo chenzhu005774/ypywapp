@@ -76,7 +76,7 @@
 			var inpt_mobile = document.getElementById("inpt_mobile");
 			var inpt_pwd = document.getElementById("inpt_pwd");
 			var btn_friend = document.getElementById("btn_friend");
-
+			
 			btn_friend.addEventListener("tap", function() {
 				// mui.toast("---------------")
 				// window.location.href='../friend.html';
@@ -93,28 +93,48 @@
 				} else if (inpt_pwd.value.trim() == "") {
 					mui.toast("请输入密码");
 				} else {
-					mui.ajax('http://www.weather.com.cn/data/sk/101110101.html', {
-						data: {
-							username: 'username',
-							password: 'password'
-						},
-						dataType: 'json', //服务器返回json格式数据
-						type: 'get', //HTTP请求类型
-						timeout: 10000, //超时时间设置为10秒；
-						headers: {
-							'Content-Type': 'application/json'
+					param = {
+						        username: inpt_mobile.value.trim(),
+								password: inpt_pwd.value.trim()
+					}
+					mui.ajax(APP_DOMAIN+'login', {
+						data: param,
+						dataType: 'json', //要求服务器返回json格式数据
+						type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST
+						timeout: 60000, //超时时间设置为6秒；
+						beforeSend: function() {
+							console.log('【AJAX:-->】【 + method + 】【P= + JSON.stringify(parm) + 】');
 						},
 						success: function(data) {
-							//服务器返回响应，根据响应结果，分析是否登录成功；
-							console.log(data.weatherinfo.city);
+							
 							window.location.href='../main.html';
+							localStorage.setItem("id",data.data.id);
+							localStorage.setItem("resname",data.data.name);
+							localStorage.setItem("chainCode",data.data.chainCode);
+							localStorage.setItem("area",data.data.area);
+							localStorage.setItem("addr",data.data.addr);
+							localStorage.setItem("healthLevel",data.data.healthLevel);
+							localStorage.setItem("contact",data.data.contact);
+							localStorage.setItem("phone",data.data.phone);
+							localStorage.setItem("landline",data.data.landline);
+							localStorage.setItem("logoPath",data.data.logoPath);
+							localStorage.setItem("busLicense",data.data.busLicense);
+							localStorage.setItem("inTime",data.data.inTime);
+							localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
+							localStorage.setItem("username",data.data.username);
+							mui.toast("登录成功")
+							console.log("<==========---------->"+localStorage.getItem("phone"));
 						},
-						error: function(xhr, type, errorThrown) {
-							//异常处理；
-							console.log(type);
-							mui.toast("服务器出错啦....")
-						}
-					});
+						error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+							mui.toast("请求超时：请检查网络：" + type)
+						},
+						complete: function() {
+							//setRequestMsg("");
+						console.log('【AJAX:-->】【 + method + 】【命令执行完成】');
+				      	}
+						});
+					
+				
 
 				}
 

@@ -8,6 +8,7 @@
 		<script type="text/javascript">
 			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
 		</script>
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 		<script type="text/javascript">
 			link(['../../css/reset.css']);
 		</script>
@@ -51,15 +52,16 @@
 				<span class="" id="msgStatus"></span>
 			</a>
 		</header> -->
+ 
 
 		<div class="mui-content pt0 mui-scroll-wrapper" id="pullrefresh">
 			<div class="mui-scroll">
 				<ul class="mui-table-view mb1rem bg tblv-nl" style="position: relative;">
 					<li class="mui-left ptb10" >
 						 	<img class="bor-r50p mt15 img50 borf" src="../../images/defuser.jpg" style="position:absolute;left:20px;" />
-						 	<a style="position:absolute;left:110px;top:45px; color: #FFFFFF;font-size: 20px;">18525536911</a>
+						 	<a  id="phone" style="position:absolute;left:110px;top:45px; color: #FFFFFF;font-size: 20px;">18525536911</a>
 							<a style="position:absolute;left:240px;top:44px; color: #FFFFFF;font-size: 6px;  width: 40px;text-align:center;  border-radius:5px;  border:1px solid #FFFFFF; ">餐厅ID</a>
-						 	<a style="position:absolute;left:110px;top:70px; color: #FFFFFF;font-size: 18px;">餐厅名称:大富豪的</a>
+						 	<a id="resname" style="position:absolute;left:110px;top:70px; color: #FFFFFF;font-size: 18px;">餐厅名称:大富豪的</a>
 					</li>
 					<canvas id="canvas" height="85" style="position:absolute;bottom: 0;left:0px;z-index:-1;width: 100%;"></canvas>
 				</ul>

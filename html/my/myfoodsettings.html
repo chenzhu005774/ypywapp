@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+
+				link(['../../css/picker/mui.picker.min.css', '../../css/picker/mui.poppicker.css','../../css/reset.css',
+				'../../css/index/citySelect.css', '../../css/index/citySelect.css','../../../css/pk/pk.css']);
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  style=" color: #FF8400;"></a>
+			
+				<h1 class="mui-title">菜品设置</h1> 
+			
+			<a class="mui-action-back mui-pull-right head-rightbtn" id="backBtn" style="display: none;">取消</a>
+			<a class="mui-pull-right head-rightbtn" id="searchBtn" >批量操作</a>
+		</header>
+		
+		<div class="mui-content mui-scroll-wrapper scroll">
+			
+			
+			<div class="mui-input-row mui-search" style="margin-left: 20px;margin-right:20px;margin-top: 15px;">
+                 <input id="inpt_search" type="search" class="mui-input-clear"placeholder="菜品搜索">
+            </div>
+			
+			<div class="mui-scroll" style="margin-left: 10px;margin-right: 10px;">
+				<ul class="mui-table-view tblv-nl mtb15" id="list_warp_foodsettings">
+					
+				 <div class="nodata">暂无内容</div>
+					 
+				</ul>
+			</div>
+			
+		</div>
+
+
+		<script type="text/html" id="list_view_foodsettings">
+			{{if data==null||data.length==0}}
+			   <div class="nodata">暂无内容</div>
+			 {{else}}
+		
+			{{each data as item}}
+			   <li class="mui-table-view-cell mui-media"  >
+				
+				   <img  class="mui-media-object mui-pull-left" src="{{item.thumbnail_pic_s}}"  style="width: 50px;height: 50px; " >
+			        
+			   	  <div class="mui-media-body" style=" float:right;margin-right: 20px; ">
+			                <p id="name" class="mui-ellipsis">销售中</p>
+			                <a   class="abutton littlelist"  data-id="{{item.uniquekey}}"style="width:50px;vertical-align:middle;">上架</a>
+			        </div>
+			   	 
+			   	 <div class="mui-media-body"  >
+			               <p id="name" class="mui-ellipsis">{{item.author_name}}</p>
+			               <a id="money" style="color:#FF8400;">￥36</a>
+			         </div>
+			   	 
+			   	  
+			    </li>
+			{{/each}} {{/if}}
+		
+		</script>
+		<script type="text/javascript">
+			//必须顺序加载
+			script(['../../js/mui.enterfocus.js', '../../js/my/myfoodsettings.js']);
+		</script>
+	</body>
+
+</html>

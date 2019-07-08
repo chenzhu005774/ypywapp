@@ -77,11 +77,33 @@ function setData() {
 }
 
  document.getElementById("opentime").addEventListener("tap",   function() {
-	  mui.toast("点击了营业时间" );
 	  openNew("opentime.html", {
 	  			backid: "user.html"
 	  		});
 	});
+	
+ document.getElementById("dishsupply").addEventListener("tap",   function() {
+	  openNew("myfoodsettings.html", {
+	  			backid: "myfoodsettings.html"
+	  		});
+	});	
+	
+ document.getElementById("packfee").addEventListener("tap",   function() {
+	  openNew("packfee.html", {
+	  			backid: "packfee.html"
+	  		});
+	});	
+	
+document.getElementById("autoaccept").addEventListener("tap",   function() {
+		 openNew("autoaccept.html", {
+			  			backid: "autoaccept.html"
+			  		});
+	 });
+document.getElementById("feedback").addEventListener("tap",   function() {
+	 		 openNew("feedback.html", {
+	 			  			backid: "feedback.html"
+	 			  		});
+	 	 });
 
 function loadData() {
 

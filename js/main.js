@@ -36,9 +36,6 @@ mui.plusReady(function() {
 	}, false);
 
 
-
-
-
 	self = plus.webview.currentWebview();
 	storage.init();
 	plus.navigator.setStatusBarBackground('#fff');

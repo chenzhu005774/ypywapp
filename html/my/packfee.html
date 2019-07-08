@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/lib/common.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" ">
+			<a class=" mui-action-back mui-icon mui-icon-left-nav mui-pull-left"
+		 style=" color: #FF8400;     "></a>
+
+		</header>
+		<div class="mui-content">
+			<!-- vertical-align:middle; 是div中同级元素垂直对齐的方式 同级元素间都要加 -->
+			<!-- line-height:60px; 是div中子元素相对父元素的偏移量 如果以最大的子元素来那么他们就是出于出于中间 -->
+			<!-- display:inline-block; 表示div中元素横向布局 不设置默认为纵向 -->
+			<!-- float:right 可以位于最右边前提是有上面那个属性 -->
+			<div style=" height: 60px;margin-left: 20px;  display:inline-block; line-height:60px ; margin-top:10px">
+				<a style="color: #000000; font-size:22px;vertical-align:middle;">包装费设置</a>
+				<img src="../../images/ypyw/icon_bg_package_fee.png" height="60px" style=" vertical-align:middle; margin-left:40px;" />
+			</div>
+
+			<div style="   margin-left:20px;">
+				<a style="color: #000000; font-size:12px; ">包装费</a>
+			</div>
+			<div class="mui-input-row" style="margin-left:20px;margin-right:20px ">
+				<input type="text" id='inpt_hotname' class="mui-input-clear" placeholder="请输入包装费">
+			</div>
+
+		
+			
+
+			<div style="margin: 20px; ">
+				<button id='btn_sub' class=" mui-btn-block mui-btn-warning" style="border-radius:40px;background: #FF8400; 
+				height: 20px ; font-size:12px; text-align:center;line-height:8px  ">提交</button>
+			</div>
+		
+		</div>
+
+
+
+
+	</body>
+	<script>
+		mui.init();
+		mui.back = function(event) {
+			plus.webview.currentWebview().close();
+		}
+
+		
+		var btn_sub = document.getElementById("btn_sub");
+		var inpt_hotname = document.getElementById("inpt_hotname");
+		var inpt_add = document.getElementById("inpt_add");
+		var inpt_name = document.getElementById("inpt_name");
+		var inpt_mobile = document.getElementById("inpt_mobile");
+		var btn_ws = document.getElementById("btn_ws");
+		
+		//合作餐厅
+		btn_sub.addEventListener("tap", function() {
+			// myselect.options[index].text;
+			mui.toast(btn_ws.options[btn_ws.value].text+"---"+inpt_hotname.value
+			+"----"+inpt_add.value)
+			// 提交成功后就返回登录界面
+			
+		});
+	</script>
+</html>

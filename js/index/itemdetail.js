@@ -1,4 +1,19 @@
-mui.init();
+mui.init({
+	
+	 beforeback: function(){
+        //获得列表界面的webview
+         var list = plus.webview.currentWebview().opener();//这种方式也可以
+         //目标页面
+		  // var ws = plus.webview.currentWebview();
+         //   var page = plus.webview.getWebviewById(ws.pageId);
+         // var list = plus.webview.getWebviewById('home.html');  
+         //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+         mui.fire(list, 'refresh'); 
+		  mui.toast("返回来");
+        //返回true，继续页面关闭逻辑
+        return true;
+    }
+});
 
 
 

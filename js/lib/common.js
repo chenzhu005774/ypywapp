@@ -1,5 +1,5 @@
 //api连接前缀
-var APP_DOMAIN = 'http://gazi.free.idcfengye.com/api/';
+var APP_DOMAIN = 'http://6unx2g.natappfree.cc/api/';
 
 //为true输出日志
 var debug = true;
@@ -939,7 +939,7 @@ function log(data) {
 		if(typeof(data) == "object") {
 			console.log(JSON.stringify(data)); //console.log(JSON.stringify(data, null, 4));
 		} else {
-			// console.log(data);
+			console.log(data);
 		}
 	}
 }
@@ -1083,7 +1083,7 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 		success: function(data) {
 			log(mklog() + '【AJAX:error_code】【' + data && data.error_code && data.error_code != undefined + '】');
 			
-			if( data.error_code != undefined) {
+			if( data.code != undefined) {
 				setRequestMsg("");
 				log(mklog() + '【AJAX:OK!】【' + method + '】【合法数据：' + JSON.stringify(data) + '】');
 				callback(data);

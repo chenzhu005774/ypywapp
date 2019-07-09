@@ -1,7 +1,4 @@
 mui.init({
-	
-	
-  	   
 
 	//  这里就是处理上下拉刷新的
 	pullRefresh: {
@@ -18,42 +15,50 @@ mui.init({
 			callback: pullupRefresh
 		}
 	},
-	beforeback: function() {
-		appPage.closeLogin();
-	}
+	 
 })
 
 
+var limit = 5 ;
 
-var pageno = 0; //初始页码
-var pagecount = 1; //总页数
-var type = 1 //当前状态，1为全部
+var pageno = 1; //初始页码
+var total = 0; //总个数
+var type = 0 //当前状态，0为全部
+var nomore = false;
+var  isappend =true;
+
+
 var lon = ""; //经度
 var lat = ""; //纬度
 var showwaitting = false;
+
 mui.plusReady(function() {
 	
-      
-	
+    window.addEventListener('refresh', function(e) {
+         //在父页面中添加监听事件，刷新页面
+     mui.toast("刷新了----"); 
+     });
 
 	storage.init();
 	//注册登录事件
-	appPage.registerCheckLoginEvent();
+	// appPage.registerCheckLoginEvent();
 
 	//切换
 	mui(".kidNav").on("tap", "a", function() {
-		if (type == this.dataset.type) {
+		if ((type+1) == this.dataset.type) {
 			mui.toast("点击自己干嘛呢？");
 			return;
 		}
-		type = this.dataset.type;
+	
 		//切换tab重新加载数据
-		pageno = 0;
-		pagecount = 1;
+		pageno = 1;
+		total = 0;
 		showwaitting = true;
+		nomore = false;
+		type = (this.dataset.type-1);
+		isappend =false;
 		getList();
 	})
-
 
 
 
@@ -85,7 +90,7 @@ mui.plusReady(function() {
 mui("#list_warp").on("tap", ".littlelist", function() {
 	mui.toast("点击了点餐" + this.dataset.id);
 	openNew("itemdetail.html", {
-		id: this.dataset.id,
+		id: 'home.html',
 		getMatchDetail: 'getMatchDetail'
 	});
 
@@ -112,97 +117,45 @@ function initPage() {
 	lon = storageLocation.Lon;
 	lat = storageLocation.Lat;
 	getList(); //第一次加载
-	// checkInvitation();
-	// setInterval(function() {
-	// 	checkInvitation(); //3秒刷新一次检查是否受邀请
-	// }, 3000);
-
-	//关闭登录
-	//appPage.closeLogin();
+	
+	 
 }
+
 //渲染列表
-function getList(isnextpage, isreload) {
-	if (type == 3) {
-		if (!storageUser.IsLogin) {
-			mui.alert("宝宝，登录后才能查看好友参加赛事");
-			return;
-		}
+function getList() {
+ 
+    
+	if(type==0){
+		type=""
 	}
-	if (type == 4) {
-		if (!storageUser.IsLogin) {
-			mui.alert("宝宝，登录后才能查看自己发起赛事");
-			return;
-		}
-	}
-
-	if (isnextpage) { //加载下一页
-		pageno++;
-	} else if (isreload) { //重新加载当前页
-		//pageno = curr_pageno;
-	} else if (pageno == 0) {
-		pageno = 1; //未加载过
-	} else {
-		pageno = 1; //默认加载第一页
-	}
-
-	if (pageno > pagecount) {
-		appPage.endPullRefresh(true);
-		return;
-	}
-	var isappend = pageno > 1 ? true : false;
-
-	var param = {},
-		url = "http://v.juhe.cn/toutiao/index?type=&key=9b4b584108efd7008439f899d9dc2593";
-	storageLocation.log();
-	lon = storageLocation.Lon;
-	lat = storageLocation.Lat;
-	//alert(type)
-	if (type == 1) {
-		param = {
-			lon: lon,
-			lat: lat,
-			pageindex: pageno,
-			playerid: storageUser.UId
-		}
-	} else if (type == 2) {
-		param = {
-			lon: lon,
-			lat: lat,
-			pageindex: pageno,
-			playerid: storageUser.UId,
-			type: "new"
-		}
-	} else if (type == 3) {
-		// url = "/Match/getFriendMatchList";
-		param = {
-			lon: lon,
-			lat: lat,
-			pageindex: pageno,
-			playerid: storageUser.UId
-		}
-	} else if (type == 4) {
-		// url = "/Match/getMyCreateMatchList";
-		param = {
-			lon: lon,
-			lat: lat,
-			pageindex: pageno,
-			playerid: storageUser.UId
-		}
-	}
+	var param = {
+		    restaurantId: localStorage.getItem("id"),
+			limit: limit,
+			page: pageno,
+			status: type,
+			};
+	
+    var  url = APP_DOMAIN+'queryOrderList';
 	request(url, param, function(json) {
-		var nomore = true;
-		if (json.error_code == 0) {
-			pagecount = json.pagecount || 0; //总页码
-			render("#list_warp", "list_view", json.result.data, isappend);
-			// appPage.imgInit();
-			// nomore = pageno >= pagecount;
-		} else {
-			var arr = document.getElementsByClassName("nodata");
-			for (var i = 0; i < arr.length; i++) {
-				arr[i].innerText = "暂无内容";
+		
+		if (json.code == 0&&json.page.totalPage!=0) {
+			total = json.page.totalCount || 0; //总页码
+			pageno = json.page.currPage||0
+			render("#list_warp", "list_view", json.page.list, isappend);
+			if(limit*pageno>=total){
+				nomore =true;
 			}
-			if (type == 3) appUI.showTopTip(json.msg);
+			
+		} else {
+			// var arr = document.getElementsByClassName("nodata");
+			// for (var i = 0; i < arr.length; i++) {
+			// 	arr[i].innerText = "暂无内容";
+			// }
+			 render("#list_warp", "list_view", json.page.list, isappend);
 		}
+		mui("#pullrefresh").pullRefresh().endPullupToRefresh(true);//这个就是停止动画的
+		mui("#pullrefresh").pullRefresh().endPulldownToRefresh();//这个就是停止动画的
+		
 		appPage.endPullRefresh(nomore);
 	}, showwaitting, function() {
 		appPage.endPullRefresh(true);
@@ -211,43 +164,33 @@ function getList(isnextpage, isreload) {
 
 }
 
-function checkInvitation() {
-	if (storageUser.UId > 0) {
-		//		request("/Match/checkWhetherHaveInviteMatch", {
-		//			playerid: storageUser.UId
-		//		}, function(json) {
-		//			if(json.code == 0) {
-		//				if(json.countinvite > 0) { //包含受邀
-		//					document.getElementById("yaoqing").setAttribute("class", "active ckecklogin");
-		//				} else { //不包含受邀
-		//					document.getElementById("yaoqing").setAttribute("class", "ckecklogin");
-		//				}
-		//			}
-		//		}, false, function() {}, false);
-	}
-}
+
 //下拉刷新具体业务实现
 function pulldownRefresh() {
 	//结束动画暂时啥都不做
-	mui("#pullrefresh").pullRefresh().endPulldownToRefresh();
-	mui.toast("不要拉我...");
-	return;
-
-	showwaitting = false;
-	pagecount = 1;
-	getList(false);
-	checkInvitation();
+	// mui.toast("不要拉我...");
+	isappend =false;
+	pageno = 1; //初始页码
+	vartotal = 0; //总个数
+	 nomore = false;
+	getList();
+	//mui("#pullrefresh").pullRefresh().endPulldownToRefresh();//这个就是停止动画的
 }
 
 // 上拉加载具体业务实现
 function pullupRefresh() {
-	// 上拉无数据： 暂时啥都不做
-	mui("#pullrefresh").pullRefresh().endPullupToRefresh(true);
-	mui.toast("不要拉我...");
-	return;
+	
+	if(nomore){
+		// 上拉无数据  直接中断
+		mui("#pullrefresh").pullRefresh().endPullupToRefresh(true);
+		return;
+	}
+	isappend =true;
+    pageno+=1;
 	showwaitting = false;
-	getList(true);
-	//checkInvitation();
+	getList();
+	//mui("#pullrefresh").pullRefresh().endPullupToRefresh(true);//这个就是停止动画的
+	
 }
 
 //刷新单条详情

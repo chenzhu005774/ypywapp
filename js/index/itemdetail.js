@@ -32,8 +32,28 @@ mui.plusReady(function() {
 		 id : self.info.id,
 	};
 	request(url, param, function(json) {
-		// 最后一个参数是 是否为追加
-		render("#food_list_warp", "food_list_view", json.data.foodList,false );
+		
+		
+		var name = document.getElementById("name");
+		name.innerText = json.data.receiveName+':';
+		var phonenumber = document.getElementById("phonenumber");
+        phonenumber.innerText = json.data.receivePhone;
+		var addr = document.getElementById("addr");
+		addr.innerText = json.data.receiveAddr;
+		 // 计算订单的总价格
+		var totalprice =0;
+		 for(var a=0; a<json.data.foodList.length;a++){
+			 var itemdata= json.data.foodList[a]
+			 totalprice=parseInt(totalprice)+parseInt(itemdata.totalPrice);
+		 }
+		 totalprice =parseInt(totalprice)+parseInt(json.data.wayFee)+parseInt(json.data.packFee);
+		 json.data.totalprice= totalprice;
+		 
+		 // 最后一个参数是 是否为追加
+		 render("#food_list_warp", "food_list_view", json.data,false );
+		
+		mui.toast("totalprice:"+totalprice);
+		
 	}, false, function() {
 		mui.toast("request error");
 	});

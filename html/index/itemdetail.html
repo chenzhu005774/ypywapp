@@ -25,11 +25,11 @@
 				 <div style="background-color:#FF8400 ;height: 80px;border-radius: 6px 6px 0px 0px ; position: relative;" >
 				   <div style="display:inline-block; margin:10px">
 				   			<a id="name"   style="color:#FFFFFF;">陈先生:</a>
-				   			<a id="number"   style="color:#FFFFFF;">18252545124</a>
+				   			<a id="phonenumber"   style="color:#FFFFFF;">18252545124</a>
 				   </div>
 				   <div style="display:inline-block; margin-left:10px">
 				   		    <a   style="color:#FFFFFF;">地址:</a>
-				   		    <a id="add"   style="color:#FFFFFF;">北京市朝阳区天安门广场124号</a>
+				   		    <a id="addr"   style="color:#FFFFFF;">北京市朝阳区天安门广场124号</a>
 				   </div>
 				   <img  style=" margin-top: -6.25rem;   position: absolute; left: 0; right: 0;  bottom: 0px;    " src="../../images/ypyw/order_stripe.png" /> 
 				 </div>
@@ -46,16 +46,16 @@
 		<!-- 菜单列表的模板 -->
 		<script type="text/html" id="food_list_view">
 			
-		{{each data as item}}
+		{{each data.foodList as item}}
 			
 			<li class="mui-table-view-cell mui-media">
-			     <img  class="mui-media-object mui-pull-left" src="{{item.thumbnail_pic_s}}"  style="width: 50px;height: 50px; " >
+			     <img  class="mui-media-object mui-pull-left" src="{{item.thumbnail_pic_s}}"  style="width: 40px;height: 40px; " >
 			     <div class="mui-media-body">
-			            <p id="name" class="mui-ellipsis">{{item.author_name}}</p>
-			            <a id="money" style="color:#FF8400;">￥36</a>
+			            <p id="name" class="mui-ellipsis">{{item.foodName}}</p>
+			            <a id="money" style="color:#FF8400;">￥{{item.price}}</a>
 			      </div>
 			     <div class="liRight">
-			      	 <a id="number" style="color:#000000;">x1</a>
+			      	 <a id="number" style="color:#000000;">x{{item.number}}</a>
 			      </div>
 			 </li>
 			
@@ -63,19 +63,19 @@
 		
 		     <div style="display:inline-block; margin-left:20px;margin-top: 0.625rem;">
 				    <a   style="color:#000000;">备注:</a>
-				    <a id="desc"   style="color:#000000; ">少辣椒,多江油</a>
+				    <a id="desc" style="color:#000000; ">{{data.remark}}</a>
 		     </div>
 			 <div style="background-color: #c8c7cc;height: 0.0625rem; margin-left:20px;margin-top: 0.625rem;"> </div>
 			 
 			  <div style="display:inline-block; margin-left:20px;margin-top: 0.625rem;">
 			 				    <a   style="color:#000000;">包装费:</a>
-			 				    <a id="packfee"   style="color:#000000;">￥2</a>
+			 				    <a id="packfee"   style="color:#FF8400;">￥{{data.packFee}}</a>
 			 </div>
 			 <div style="background-color: #c8c7cc;height: 0.0625rem; margin-left:20px;margin-top: 0.625rem;"> </div>
 			 
 			  <div style="display:inline-block; margin-left:20px;margin-top: 0.625rem;">
 			 				    <a   style="color:#000000;">配送费:</a>
-			 				    <a id="wayfee"   style="color:#000000;">￥5</a>
+			 				    <a id="wayfee"   style="color:#FF8400;">￥{{data.wayFee}}</a>
 			 </div>
 			  <div style="background-color: #c8c7cc;height: 0.0625rem; margin-left:20px;margin-top: 0.625rem;"> </div>
 			 <div style="display:inline-block; margin-left:20px;margin-top: 0.625rem;">
@@ -85,13 +85,13 @@
 			  <div style="background-color: #c8c7cc;height: 0.0625rem; margin-left:20px;margin-top: 0.625rem;"> </div>
 			  <div style="display:inline-block; margin-left:20px;margin-top: 0.625rem;">
 			 				    <a   style="color:#000000;">总价:</a>
-			 				    <a id="wayfee"   style="color:#000000;">￥65</a>
+			 				    <a id="wayfee"   style="color:#FF8400;">￥{{data.totalprice }}</a>
 			 </div>
 			 <div style="background-color: #c8c7cc;height: 0.0625rem; margin-left:20px;margin-top: 0.625rem;"> </div>
 			 
 			 <div style="height: 20px;" ></div>
 			  <a  class="refuse"  style="color:#ED5854; text-align:center; margin: 20px;">拒绝</a>
-			  <a class="abutton appcet"  style="width:60px; ">接单</a>
+			  <a class="abutton appcet"  style="width:60px;margin-right: 15px; ">接单</a>
 			 <div style="height: 20px;" ></div>
 		
 		</script>
@@ -100,7 +100,6 @@
 			//必须顺序加载
 		  script(['../../js/lib/picker/city.data.js', '../../js/lib/picker/mui.picker.min.js', '../../js/lib/picker/mui.poppicker.js', '../../js/index/itemdetail.js']);
 				
-		
 		</script>
 	</body>
 

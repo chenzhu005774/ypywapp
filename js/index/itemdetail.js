@@ -19,18 +19,23 @@ mui.init({
 
 mui.plusReady(function() {
 	
-  plus.geolocation.getCurrentPosition(MapPoint, function(e) {
+     var self = plus.webview.currentWebview();
+	//  获取定位
+       plus.geolocation.getCurrentPosition(MapPoint, function(e) {
          mui.toast("error:" + e.message);
          })
 	
 	
-	url = "http://v.juhe.cn/toutiao/index?type=&key=9b4b584108efd7008439f899d9dc2593";
-	var param = {};
+	url = APP_DOMAIN+ "receiptOrder";
+	var param = {
+		 restaurantId : self.info.restaurantId,
+		 id : self.info.id,
+	};
 	request(url, param, function(json) {
 		// 最后一个参数是 是否为追加
-		render("#food_list_warp", "food_list_view", json.result.data,false );
+		render("#food_list_warp", "food_list_view", json.data.foodList,false );
 	}, false, function() {
-		mui.toast("------------------>>>");
+		mui.toast("request error");
 	});
 
 });

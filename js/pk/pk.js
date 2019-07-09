@@ -32,11 +32,14 @@ var lon = ""; //经度
 var lat = ""; //纬度
 var showwaitting = false;
 
+var data =null;
+
 mui.plusReady(function() {
 	
     window.addEventListener('refresh', function(e) {
          //在父页面中添加监听事件，刷新页面
      mui.toast("刷新了----"); 
+	 getList();
      });
 
 	storage.init();
@@ -89,9 +92,13 @@ mui.plusReady(function() {
 
 mui("#list_warp").on("tap", ".littlelist", function() {
 	mui.toast("点击了点餐" + this.dataset.id);
+	var infoarr=this.dataset.id.split("||");
+	
 	openNew("itemdetail.html", {
-		id: 'home.html',
-		getMatchDetail: 'getMatchDetail'
+		id: infoarr[0],
+		restaurantId:infoarr[1],
+		getMatchDetail: 'getMatchDetail',
+		
 	});
 
 });
@@ -137,7 +144,7 @@ function getList() {
 	
     var  url = APP_DOMAIN+'queryOrderList';
 	request(url, param, function(json) {
-		
+		data = json.page.list;
 		if (json.code == 0&&json.page.totalPage!=0) {
 			total = json.page.totalCount || 0; //总页码
 			pageno = json.page.currPage||0

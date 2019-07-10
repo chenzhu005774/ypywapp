@@ -8,8 +8,8 @@ mui.init({
          //   var page = plus.webview.getWebviewById(ws.pageId);
          // var list = plus.webview.getWebviewById('home.html');  
          //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
-         mui.fire(list, 'refresh'); 
-		  mui.toast("返回来");
+          // mui.fire(list, 'refresh');  //这里啥都不能做了所有就不发送刷新广播了
+		  // mui.toast("返回来");
         //返回true，继续页面关闭逻辑
         return true;
     }
@@ -21,9 +21,9 @@ mui.plusReady(function() {
 	
      var self = plus.webview.currentWebview();
 	//  获取定位
-       plus.geolocation.getCurrentPosition(MapPoint, function(e) {
+    plus.geolocation.getCurrentPosition(MapPoint, function(e) {
          mui.toast("error:" + e.message);
-         })
+    });
 	
 	
 	url = APP_DOMAIN+ "receiptOrder";
@@ -52,7 +52,6 @@ mui.plusReady(function() {
 		 // 最后一个参数是 是否为追加
 		 render("#food_list_warp", "food_list_view", json.data,false );
 		
-		mui.toast("totalprice:"+totalprice);
 		
 	}, false, function() {
 		mui.toast("request error");

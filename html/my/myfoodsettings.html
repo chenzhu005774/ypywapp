@@ -42,25 +42,30 @@
 			
 		</div>
 
-
+          <!--status /**1上架状态  0下架状态**/ -->
 		<script type="text/html" id="list_view_foodsettings">
 			{{if data==null||data.length==0}}
 			   <div class="nodata">暂无内容</div>
-			 {{else}}
+			{{else}}
 		
 			{{each data as item}}
 			   <li class="mui-table-view-cell mui-media"  >
 				
-				   <img  class="mui-media-object mui-pull-left" src="{{item.thumbnail_pic_s}}"  style="width: 50px;height: 50px; " >
+				   <img  class="mui-media-object mui-pull-left" src="{{item.imagePath}}"  style="width: 50px;height: 50px; " >
 			        
 			   	  <div class="mui-media-body" style=" float:right;margin-right: 20px; ">
+					    {{if item.status==1}}
 			                <p id="name" class="mui-ellipsis">销售中</p>
-			                <a   class="abutton littlelist"  data-id="{{item.uniquekey}}"style="width:50px;vertical-align:middle;">上架</a>
+			                <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.status}}"style="width:50px;vertical-align:middle;">下架</a>
+						{{else}}
+						     <p id="name" class="mui-ellipsis">下架中</p>
+					     	 <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.status}}"style="width:50px;vertical-align:middle;">上架</a>
+						{{/if}}
 			        </div>
 			   	 
 			   	 <div class="mui-media-body"  >
-			               <p id="name" class="mui-ellipsis">{{item.author_name}}</p>
-			               <a id="money" style="color:#FF8400;">￥36</a>
+			               <p id="name" class="mui-ellipsis">{{item.name}}</p>
+			               <a id="money" style="color:#FF8400;">￥{{item.sysPrice}}</a>
 			         </div>
 			   	 
 			   	  
@@ -73,5 +78,5 @@
 			script(['../../js/mui.enterfocus.js', '../../js/my/myfoodsettings.js']);
 		</script>
 	</body>
-
+ 
 </html>

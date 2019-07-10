@@ -50,22 +50,21 @@ mui.plusReady(function() {
 
 function loadData() {
 	mui.toast("come here " );
-	var url="http://v.juhe.cn/toutiao/index?type=&key=9b4b584108efd7008439f899d9dc2593";
+	var url = APP_DOMAIN+ "queryFood";
 	var param={
-		playerid: 123, //
-		keyword: 456
+		restaurantId: localStorage.getItem("id"), //
 	}
 	
 	request(url, param, function(json) {
 		var nomore = true;
-		if (json.error_code == 0) {
-			pagecount = json.pagecount || 0; //总页码
-			render("#list_warp_foodsettings", "list_view_foodsettings", json.result.data, false);
+		if (json.code == 0) {
+			render("#list_warp_foodsettings", "list_view_foodsettings", json.data, false);
 		} else {
 			render("#list_warp_foodsettings", "list_view_foodsettings", null, false);
 		}
 	}, false, function() {
 		// 错误回调
+		mui.alert('操作获取菜品列表失败', '处理结果', function(){});
 	});
 	
 	

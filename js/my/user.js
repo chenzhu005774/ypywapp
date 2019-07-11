@@ -1,32 +1,31 @@
-mui.init(
-{
-	// mui("#pullrefresh").pullRefresh().setStopped(true);
-	pullRefresh: {
-		stop:true,
-		container: '#pullrefresh',
-		down: { //下拉刷新
-			callback: pulldownRefresh,
-			style: mui.os.android ? "circle" : "default"
-			//auto: true
-		}
-	},
-	beforeback: function() {
-		appPage.closeLogin();
-	},
-	
-	
-}
+mui.init({
+		// mui("#pullrefresh").pullRefresh().setStopped(true);
+		pullRefresh: {
+			stop: true,
+			container: '#pullrefresh',
+			down: { //下拉刷新
+				callback: pulldownRefresh,
+				style: mui.os.android ? "circle" : "default"
+				//auto: true
+			}
+		},
+		beforeback: function() {
+			appPage.closeLogin();
+		},
+
+
+	}
 
 );
 
 mui.plusReady(function() {
-	
+
 	storage.init();
 	$("#resname").text(localStorage.getItem("resname"));
 	$("#phone").text(localStorage.getItem("phone"));
-	
-	
-	
+
+
+
 	//initPage();
 	//	document.getElementById("test").addEventListener("tap", function() {
 	//		openNew("test.html");
@@ -76,53 +75,64 @@ function setData() {
 	appPage.registerCheckLoginEvent();
 }
 
- document.getElementById("opentime").addEventListener("tap",   function() {
-	  openNew("opentime.html", {
-	  			backid: "user.html"
-	  		});
+document.getElementById("opentime").addEventListener("tap", function() {
+	openNew("opentime.html", {
+		backid: "user.html"
 	});
-	
- document.getElementById("dishsupply").addEventListener("tap",   function() {
-	  openNew("myfoodsettings.html", {
-	  			backid: "myfoodsettings.html"
-	  		});
-	});	
-	
- document.getElementById("packfee").addEventListener("tap",   function() {
-	  openNew("packfee.html", {
-	  			backid: "packfee.html"
-	  		});
-	});	
-	
-document.getElementById("autoaccept").addEventListener("tap",   function() {
-		 openNew("autoaccept.html", {
-			  			backid: "autoaccept.html"
-			  		});
-	 });
-document.getElementById("feedback").addEventListener("tap",   function() {
-	 		 openNew("feedback.html", {
-	 			  			backid: "feedback.html"
-	 			  		});
-	 	 });
+});
+
+document.getElementById("dishsupply").addEventListener("tap", function() {
+	openNew("myfoodsettings.html", {
+		backid: "myfoodsettings.html"
+	});
+});
+
+document.getElementById("packfee").addEventListener("tap", function() {
+	openNew("packfee.html", {
+		backid: "packfee.html"
+	});
+});
+
+document.getElementById("autoaccept").addEventListener("tap", function() {
+	openNew("autoaccept.html", {
+		backid: "autoaccept.html"
+	});
+});
+document.getElementById("feedback").addEventListener("tap", function() {
+	openNew("feedback.html", {
+		backid: "feedback.html"
+	});
+});
+document.getElementById("exitapp").addEventListener("tap", function() {
+
+	var btn = ["确定", "取消"];
+	mui.confirm('确认退出登录并关闭应用', '退出', btn, function(e) {
+		if (e.index == 0) {
+			localStorage.setItem("islogin","no");
+			plus.runtime.quit();
+		}
+	});
+});
+
 
 function loadData() {
 
-	if(!storageUser.IsLogin) {
+	if (!storageUser.IsLogin) {
 		appPage.endPullRefresh(true);
 		return;
 	}
 	request("/Player/getPlayerIndexInfo", {
 		playerid: storageUser.UId
 	}, function(json) {
-		if(json.code == 0) {
-			if(json.data.ImgUrl != "") { //判断头像是否路径相同
+		if (json.code == 0) {
+			if (json.data.ImgUrl != "") { //判断头像是否路径相同
 				storageUser = kidstorageuser.getInstance();
 				var arr = json.data.ImgUrl.split('/');
 				var imgname = arr[arr.length - 1];
 				var storageimgnamearr = storageUser.ImgUrl.split('/');
 				var storageimgname = storageimgnamearr[storageimgnamearr.length - 1];
 				log(imgname + "|" + storageimgname)
-				if(imgname != storageimgname) { //本地图片名和网络图片名不同，显示为网络图，并下载
+				if (imgname != storageimgname) { //本地图片名和网络图片名不同，显示为网络图，并下载
 					//storageUser.refreshImgUrl(json.data.ImgUrl);//路径刷新为网络图片
 					//下载网络图
 					storageUser.downloadImg(json.data.ImgUrl);
@@ -176,7 +186,7 @@ function loadData() {
 // }
 
 function checkMsg() {
-	if(storageUser.UId > 0) {
+	if (storageUser.UId > 0) {
 		//		request('/Player/getPlayerNoReadNotify', {
 		//			playerid: storageUser.UId
 		//		}, function(r) {
@@ -208,7 +218,7 @@ function loop() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	step++;
 	//画3个不同颜色的矩形  
-	for(var j = lines.length - 1; j >= 0; j--) {
+	for (var j = lines.length - 1; j >= 0; j--) {
 		ctx.fillStyle = lines[j];
 		//每个矩形的角度都不同，每个之间相差45度  
 		var angle = (step + j * 90) * Math.PI / 180;
@@ -216,7 +226,8 @@ function loop() {
 		var deltaHeightRight = Math.cos(angle) * 50 + 30;
 		ctx.beginPath();
 		ctx.moveTo(0, canvas.height / 2 + deltaHeight);
-		ctx.bezierCurveTo(canvas.width / 2, canvas.height / 2 + deltaHeight, canvas.width / 2, canvas.height / 2 + deltaHeightRight, canvas.width, canvas.height / 2 + deltaHeightRight);
+		ctx.bezierCurveTo(canvas.width / 2, canvas.height / 2 + deltaHeight, canvas.width / 2, canvas.height / 2 +
+			deltaHeightRight, canvas.width, canvas.height / 2 + deltaHeightRight);
 		ctx.lineTo(canvas.width, canvas.height);
 		ctx.lineTo(0, canvas.height);
 		ctx.lineTo(0, canvas.height / 2 + deltaHeight);

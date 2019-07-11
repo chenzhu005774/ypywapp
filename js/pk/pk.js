@@ -137,9 +137,9 @@ function updateOrder(id,status){
 	var message = '';
 	if(status==8){
 		message='确认拒绝该订单么？';
-	}else if(status=4){
+	}else if(status==4){
 		message='确认接单么？';
-	}else if(status=5){
+	}else if(status==5){
 		message='确认出餐么？';
 	}
 	   var btnArray = ['取消', '确定'];

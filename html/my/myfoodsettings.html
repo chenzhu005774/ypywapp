@@ -19,52 +19,64 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  style=" color: #FF8400;"></a>
 			
-				<h1 class="mui-title">菜品设置</h1> 
+				<h1 class="mui-title">菜品设置</h1>  
+			 
+			<!-- <a class="mui-action-back mui-pull-right head-rightbtn" id="backBtn" style="display: none;">取消</a> -->
+			<div id="alltodo"style="background: #000000;" class="alltodo">
+				<a class="mui-pull-right head-rightbtn "  style="width: 100px;height: 50px; " >批量操作</a>
+			</div>
 			
-			<a class="mui-action-back mui-pull-right head-rightbtn" id="backBtn" style="display: none;">取消</a>
-			<a class="mui-pull-right head-rightbtn" id="searchBtn" >批量操作</a>
 		</header>
 		
-		<div class="mui-content mui-scroll-wrapper scroll">
+		<div class="mui-content  ">
 			
 			
 			<div class="mui-input-row mui-search" style="margin-left: 20px;margin-right:20px;margin-top: 15px;">
                  <input id="inpt_search" type="search" class="mui-input-clear"placeholder="菜品搜索">
             </div>
 			
-			<div class="mui-scroll" style="margin-left: 10px;margin-right: 10px;">
-				<ul class="mui-table-view tblv-nl mtb15" id="list_warp_foodsettings">
+			<div  style="margin-left: 10px;margin-right: 10px; ">
+				<ul class="mui-table-view tblv-nl mtb15" id="list_warp_foodsettings"  >
 					
 				 <div class="nodata">暂无内容</div>
 					 
-				</ul>
-			</div>
+				</ul> 
+			</div> 
+			<!-- <div style=" height:50px; background: #f0f0f0f; width: 100%;" class="mycheckbox" >
+					
+					 <a   class="abutton littlelist"  style="  bottom:15px ; margin-right: 20px;width: 100px;" >一键下线</a>	
+					 <a   class="abutton littlelist"  style="  bottom:15px ;margin-right: 20px; width: 100px;" >一键上线</a>
+					 <a   class="abutton littlelist"  style="  bottom:15px ;margin-right: 20px; width: 50px; " >全选</a>	
+			</div> -->
 			
-		</div>
+		</div> 
 
-          <!--status /**1上架状态  0下架状态**/ -->
+       <!--status /**1上架状态  0下架状态**/ -->  
 		<script type="text/html" id="list_view_foodsettings">
 			{{if data==null||data.length==0}}
 			   <div class="nodata">暂无内容</div>
 			{{else}}
-		
+		 
 			{{each data as item}}
 			   <li class="mui-table-view-cell mui-media"  >
 				
+				   	<div  class="mui-media-object mui-pull-left ">  
+				        <input id="checkbox" name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}">
+				    </div>
 				   <img  class="mui-media-object mui-pull-left" src="{{item.imagePath}}"  style="width: 50px;height: 50px; " >
 			        
 			   	  <div class="mui-media-body" style=" float:right;margin-right: 20px; ">
-					    {{if item.status==1}}
+					    {{if item.isUpDown==1}}
 			                <p id="name" class="mui-ellipsis">销售中</p>
-			                <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.status}}"style="width:50px;vertical-align:middle;">下架</a>
+			                <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}"style="width:50px;vertical-align:middle;">下架</a>
 						{{else}}
 						     <p id="name" class="mui-ellipsis">下架中</p>
-					     	 <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.status}}"style="width:50px;vertical-align:middle;">上架</a>
+					     	 <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}"style="width:50px;vertical-align:middle;">上架</a>
 						{{/if}}
 			        </div>
 			   	 
 			   	 <div class="mui-media-body"  >
-			               <p id="name" class="mui-ellipsis">{{item.name}}</p>
+			               <p id="name" class="mui-ellipsis">{{item.name}}</p> 
 			               <a id="money" style="color:#FF8400;">￥{{item.sysPrice}}</a>
 			         </div>
 			   	 

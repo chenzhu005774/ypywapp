@@ -55,7 +55,7 @@
 		<!-- 这里就是上下拉刷新的 -->
 		<div class="mui-content mui-scroll-wrapper bgbig" id="pullrefresh">
 			<div class="mui-scroll">
-				<ul class="mui-table-view tblv-nl" id="list_warp">
+				<ul class="mui-table-view tblv-nl" id="list_warp"> 
                     <div class="nodata">暂无内容</div>
 				</ul>
 			</div>
@@ -179,14 +179,14 @@
 										<a id="number" class="names" style="color:#555555;">{{item.receiveAddr}}124号</a>
 								</div>
 								<img src="../../images/xuline.png" width="100%" height="8px" />   
-						 </div>
-								 <!-- 这是下面的那一大块  接单的部分 -->
-						 <div style=" margin-top:5px;"  >
+						 </div> 
+								 <!-- 这是下面的那一大块  接单的部分 --> 
+						 <div style=" margin-top:5px;"  > 
 							 {{if item.status==3}}
 							 	  <a   class="names littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||8"   style="color:#ED5854;vertical-align:middle;">拒绝</a>
 							 	  <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||4"style="width:60px;vertical-align:middle;">接单</a>
-							 {{else if item.status==4}}
-							      <a    style="color:#ED5854;vertical-align:middle;">&nbsp;</a>
+							 {{else if item.status==4}} 
+							      <a   style="color:#ED5854;vertical-align:middle;">&nbsp;</a>
 								  <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||5"style="width:60px;vertical-align:middle;">出餐</a>
 							 {{else }}
 								 <a    style="color:#ED5854;vertical-align:middle;">&nbsp;</a>

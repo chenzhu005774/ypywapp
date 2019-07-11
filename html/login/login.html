@@ -65,10 +65,15 @@
 		mui.plusReady(function() {
 			// storage.init();
 			var firstGuide = localStorage.getItem("guide");
-			mui.toast("firstGuide000...." + firstGuide)
+			var islogin = localStorage.getItem("islogin");
+			
 			if (firstGuide != "yes") {
 				window.location.href = '../hello.html'; //启动引导页
 			}
+			
+			if(islogin=="yes"){
+				window.location.href='../main.html';
+			 }
 
 
 
@@ -121,6 +126,10 @@
 							localStorage.setItem("inTime",data.data.inTime);
 							localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
 							localStorage.setItem("username",data.data.username);
+							
+							
+                             localStorage.setItem("islogin","yes");
+
 							mui.toast("登录成功")
 							window.location.href='../main.html';
 							

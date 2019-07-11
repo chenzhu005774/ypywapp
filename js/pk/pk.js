@@ -36,6 +36,28 @@ var data =null;
 
 mui.plusReady(function() {
 	
+	
+
+	
+	
+	//  获取定位 上报 顺便上报个推ID
+	plus.geolocation.getCurrentPosition(MapPoint, function(e) { mui.toast("获取位置信息失败请设置开启权限否则无法接单");});
+	
+		
+	plus.push.addEventListener("click", function(msg) {
+		// 分析msg.payload处理业务逻辑   
+		// mui.alert(JSON.stringify(msg)); //获取通知栏的json数据 
+		mui.alert("有新订单消息");
+		getList();
+	}, false);
+	
+	//监听接收透传消息事件  
+	plus.push.addEventListener('receive', function(msg) {
+		//处理透传消息的业务逻辑代码  
+		mui.alert("有新订单消息");
+		getList();
+	}, false);
+	
     window.addEventListener('refresh', function(e) {
          //在父页面中添加监听事件，刷新页面
      // mui.toast("刷新了----"); 
@@ -346,4 +368,29 @@ var pkEvent = {
 			}
 		})
 	}
+}
+
+
+function MapPoint(position) {
+    var Lon = position.coords.longitude;   //获取经度
+    var Lat = position.coords.latitude;  //获取纬度
+    var address = "当前地址：" + position.address.province + "," + position.address.city + "," + position.address.district + "," + position.address.street + "," + position.address.streetNum;
+    // alert(Lon + "," + Lat);
+    // alert(address); 
+	 	// 获取个推id
+	 var clientid = plus.push.getClientInfo().clientid;
+	 var param = {
+	 	    id: localStorage.getItem("id"),
+	 		lng: Lon,
+	 		lat: Lat,
+	 		clientid: clientid,
+	  };
+	 
+	 var  url = APP_DOMAIN+'setRestaurant';
+	 request(url, param, function(json) {
+	 	 mui.toast("上报您的位置信息成功,准备开始接单吧");  
+	 }, false, function() {
+	 	 alert("上报您的位置信息失败,请在我的界面手动上报"); 
+	 });
+	 
 }

@@ -64,9 +64,9 @@
 			</div>
 			<div style="margin-left:20px;margin-right:20px "> 
 					<select name="select" id="btn_ws" class="form-control">
-						<option value="0">一级</option>
-						<option value="1">二级</option>
-						<option value="2">三级</option>
+						<option value="1" selected>一级</option>
+						<option value="2">二级</option>
+						<option value="3">三级</option>
 					</select>
 				</div>
 
@@ -100,12 +100,36 @@
 		
 		//合作餐厅
 		btn_sub.addEventListener("tap", function() {
-			// myselect.options[index].text;
-			mui.toast(btn_ws.options[btn_ws.value].text+"---"+inpt_hotname.value
-			+"----"+inpt_add.value)
-			// 提交成功后就返回登录界面
+	
+	     
+	     
+		 if(inpt_hotname.value==""){
+			        mui.toast("请输入餐厅名称");
+					 return;
+			       }
+		 if(inpt_name.value==""){
+					mui.toast("请输入联系人"); 
+					 return;
+					}
+		 if(inpt_mobile.value==""){
+					mui.toast("请输入电话"); 
+					 return;
+					}
+		 if(inpt_add.value==""){
+					mui.toast("请输入地址"); 
+					 return;
+					}
+		  										
+		 var param = {
+		 	    applyPhone: inpt_mobile.value,
+		 		applicant: inpt_name.value,
+		 		restaurantName: inpt_hotname.value,
+		 		addr: inpt_add.value,
+		 		healthLevel:  btn_ws.value,
+		 		};
+	     var  url = APP_DOMAIN+'apply';
 			
-			mui.ajax(APP_DOMAIN+'login', {
+			mui.ajax(url, {
 				data: param,
 				dataType: 'json', //要求服务器返回json格式数据
 				type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST
@@ -114,30 +138,17 @@
 					console.log('【AJAX:-->】【 + method + 】【P= + JSON.stringify(parm) + 】');
 				},
 				success: function(data) {
-					
-					window.location.href='../main.html';
-					localStorage.setItem("id",data.data.id);
-					localStorage.setItem("name",data.data.name);
-					localStorage.setItem("chainCode",data.data.chainCode);
-					localStorage.setItem("area",data.data.area);
-					localStorage.setItem("addr",data.data.addr);
-					localStorage.setItem("healthLevel",data.data.healthLevel);
-					localStorage.setItem("contact",data.data.contact);
-					localStorage.setItem("phone",data.data.phone);
-					localStorage.setItem("landline",data.data.landline);
-					localStorage.setItem("logoPath",data.data.logoPath);
-					localStorage.setItem("busLicense",data.data.busLicense);
-					localStorage.setItem("inTime",data.data.inTime);
-					localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
-					localStorage.setItem("username",data.data.username);
-					mui.toast("登录成功")
-					console.log("<==========---------->"+localStorage.getItem("phone"));
+					 mui.alert('提交成功我们会尽快与您联系', '处理结果', function(){
+						 var curr = plus.webview.currentWebview();
+						 curr.close();
+					 });
+					 
+					 
 				},
 				error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
-					mui.toast("请求超时：请检查网络：" + type)
+					mui.toast("请求超时：请检查网络：" )
 				},
 				complete: function() {
-					//setRequestMsg("");
 				console.log('【AJAX:-->】【 + method + 】【命令执行完成】');
 			  	}
 				});

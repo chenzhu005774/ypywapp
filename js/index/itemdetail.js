@@ -20,10 +20,10 @@ mui.init({
 mui.plusReady(function() {
 	
      var self = plus.webview.currentWebview();
-	//  获取定位
-    plus.geolocation.getCurrentPosition(MapPoint, function(e) {
-         mui.toast("error:" + e.message);
-    });
+	// //  获取定位
+ //    plus.geolocation.getCurrentPosition(MapPoint, function(e) {
+ //         mui.toast("error:" + e.message);
+ //    });
 	
 	
 	url = APP_DOMAIN+ "receiptOrder";

@@ -1056,7 +1056,7 @@ function md5sign(parm) {
 	}
 	signstr = signstr.replace("+", "");
 	//log(signstr);
-	var md5str = md5(signstr);
+	var md5str =  signstr ;
 	return md5str;
 }
 /**

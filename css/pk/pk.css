@@ -17,6 +17,13 @@
 	  color:#ffffff;
 	  vertical-align:middle;
 	  float:right;
+}.abuttonnobg{ 
+      width:60px;
+	  text-align:center; 
+	  border-radius:15px; 
+	  color:#ffffff;
+	  vertical-align:middle;
+	  float:right;
 }
 .rightabsolute{
 	position: absolute;

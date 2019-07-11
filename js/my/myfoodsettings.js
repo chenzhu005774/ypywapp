@@ -84,7 +84,7 @@ mui.plusReady(function() {
 		  	} else {
 		  		 
 		  	}
-		  }, false, function() {
+		  }, true, function() {
 		  	// 错误回调
 		  	mui.alert('操作菜品失败', '处理结果', function() {});
 		  });
@@ -106,7 +106,7 @@ function loadData() {
 		} else {
 			render("#list_warp_foodsettings", "list_view_foodsettings", null, false);
 		}
-	}, false, function() {
+	}, true, function() {
 		// 错误回调
 		mui.alert('操作获取菜品列表失败', '处理结果', function() {});
 	});

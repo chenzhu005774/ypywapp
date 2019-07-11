@@ -22,8 +22,9 @@
 				<h1 class="mui-title">菜品设置</h1>  
 			 
 			<!-- <a class="mui-action-back mui-pull-right head-rightbtn" id="backBtn" style="display: none;">取消</a> -->
-			<div id="alltodo"style="background: #000000;" class="alltodo">
-				<a class="mui-pull-right head-rightbtn "  style="width: 100px;height: 50px; " >批量操作</a>
+			<div style="background: #000000;" style="width: 100px;height: 50px; ">
+				<!-- <a class="mui-pull-right head-rightbtn "  style="width: 100px;height: 50px; " >批量操作</a> -->
+				 <!-- <a  id="alltodo" class="abuttonnobg  mui-pull-right head-rightbtn"  style=" width: 100px;height: 50px;" >批量操作</a> -->
 			</div>
 			
 		</header>
@@ -61,7 +62,7 @@
 			   <li class="mui-table-view-cell mui-media"  >
 				
 				   	<div  class="mui-media-object mui-pull-left ">  
-				        <input id="checkbox" name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}">
+				        <!-- <input id="checkbox" name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}"> -->
 				    </div>
 				   <img  class="mui-media-object mui-pull-left" src="{{item.imagePath}}"  style="width: 50px;height: 50px; " >
 			        
@@ -74,7 +75,7 @@
 					     	 <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}"style="width:50px;vertical-align:middle;">上架</a>
 						{{/if}}
 			        </div>
-			   	 
+			   	  
 			   	 <div class="mui-media-body"  >
 			               <p id="name" class="mui-ellipsis">{{item.name}}</p> 
 			               <a id="money" style="color:#FF8400;">￥{{item.sysPrice}}</a>

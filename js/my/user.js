@@ -25,7 +25,6 @@ mui.plusReady(function() {
 	$("#phone").text(localStorage.getItem("phone"));
 
 
-
 	//initPage();
 	//	document.getElementById("test").addEventListener("tap", function() {
 	//		openNew("test.html");
@@ -113,8 +112,38 @@ document.getElementById("exitapp").addEventListener("tap", function() {
 		}
 	});
 });
+document.getElementById("updatemap").addEventListener("tap", function() {
 
+	var btn = ["确定", "取消"];
+	mui.confirm('是否上报最新的位置信息', '更新位置', btn, function(e) {
+		if (e.index == 0) {
+			//  获取定位 上报 顺便上报个推ID
+			plus.geolocation.getCurrentPosition(MapPoint, function(e) { mui.toast("获取位置信息失败请设置开启权限否则无法接单");});
+		}
+	});
+});
 
+function MapPoint(position) {
+    var Lon = position.coords.longitude;   //获取经度
+    var Lat = position.coords.latitude;  //获取纬度
+    var address = "当前地址：" + position.address.province + "," + position.address.city + "," + position.address.district + "," + position.address.street + "," + position.address.streetNum;
+	 	// 获取个推id
+	 var clientid = plus.push.getClientInfo().clientid;
+	 alert(clientid);
+	 var param = {
+	 	    id: localStorage.getItem("id"),
+	 		lng: Lon,
+	 		lat: Lat,
+	 		clientId: clientid,
+	  };
+	 var  url = APP_DOMAIN+'setRestaurant';
+	 request(url, param, function(json) {
+	 	 mui.toast("上报您的位置信息成功,准备开始接单吧");  
+	 }, false, function() {
+	 	 alert("上报您的位置信息失败,请在我的界面手动上报"); 
+	 });
+	 
+}
 function loadData() {
 
 	if (!storageUser.IsLogin) {

@@ -33,7 +33,7 @@
 				<a style="color: #000000; font-size:12px; ">包装费</a>
 			</div>
 			<div class="mui-input-row" style="margin-left:20px;margin-right:20px ">
-				<input type="text" id='inpt_hotname' class="mui-input-clear" placeholder="请输入包装费">
+				<input type="text" id='inpt_packfree' class="mui-input-clear" placeholder="请输入包装费">
 			</div>
 
 		
@@ -58,18 +58,25 @@
 
 		
 		var btn_sub = document.getElementById("btn_sub");
-		var inpt_hotname = document.getElementById("inpt_hotname");
-		var inpt_add = document.getElementById("inpt_add");
-		var inpt_name = document.getElementById("inpt_name");
-		var inpt_mobile = document.getElementById("inpt_mobile");
-		var btn_ws = document.getElementById("btn_ws");
+		var inpt_packfree = document.getElementById("inpt_packfree");
+	 
 		
-		//合作餐厅
 		btn_sub.addEventListener("tap", function() {
-			// myselect.options[index].text;
-			mui.toast(btn_ws.options[btn_ws.value].text+"---"+inpt_hotname.value
-			+"----"+inpt_add.value)
-			// 提交成功后就返回登录界面
+			if(inpt_packfree.value==""){
+				mui.toast("请输包装费");
+				return;
+			}
+			 var param = {
+			 		 id: localStorage.getItem("id"),
+			 		packFee:inpt_packfree.value,
+			 	};
+			 
+			 	var url = APP_DOMAIN + 'setRestaurant';
+			 	request(url, param, function(json) {
+			 		mui.toast("更新信息成功");
+			 	}, false, function() {
+			 		alert("更新信息失败,请稍后再试");
+			 	});
 			
 		});
 	</script>

@@ -48,8 +48,8 @@
 			</div>
 			<div style="margin-left:20px;margin-right:20px ">
 				<select name="select" id="btn_ws" class="form-control">
-					<option value="0" select>是</option>
-					<option value="1">否</option>
+					<option value="0" select>否</option>
+					<option value="1">是</option>
 				</select>
 			</div>
 
@@ -76,7 +76,18 @@
 		var inpt_close = document.getElementById("inpt_close");
 		var btn_ws = document.getElementById("btn_ws");
 		
+		
 		btn_sub.addEventListener("tap", function() {
+			
+			if(inpt_open.value==""){
+				mui.toast("请输入开业时间");
+				return;
+			}
+			if(inpt_close.value==""){
+			 	mui.toast("请输入歇业时间");
+				return;
+			}
+			
 			
 			var param = {
 				 id: localStorage.getItem("id"),

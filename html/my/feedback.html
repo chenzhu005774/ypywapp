@@ -33,21 +33,21 @@
 				<a style="color: #000000; font-size:12px; ">姓名</a>
 			</div>
 			<div class="mui-input-row" style="margin-left:20px;margin-right:20px ">
-				<input type="text" id='inpt_hotname' class="mui-input-clear" placeholder="请输姓名">
+				<input type="text" id='inpt_name' class="mui-input-clear" placeholder="请输姓名">
 			</div>
 
 			<div style="     margin-left:20px">
 				<a style="color: #000000; font-size:12px; ">电话号码</a>
 			</div>
 			<div class="mui-input-row" style="margin-left:20px;margin-right:20px ">
-				<input type="text" id='inpt_add' class="mui-input-clear" placeholder="请输入电话号码">
+				<input type="text" id='inpt_number' class="mui-input-clear" placeholder="请输入电话号码">
 			</div>
 			
 			<div style="     margin-left:20px">
 				<a style="color: #000000; font-size:12px; ">意见</a>
 			</div>
 			<div class="mui-input-row" style="margin-left:20px;margin-right:20px ">
-				<input type="text" id='inpt_add' class="mui-input-clear" placeholder="请输入意见">
+				<input type="text" id='inpt_content' class="mui-input-clear" placeholder="请输入意见">
 			</div>
 			
 	     
@@ -73,18 +73,39 @@
 
 		
 		var btn_sub = document.getElementById("btn_sub");
-		var inpt_hotname = document.getElementById("inpt_hotname");
-		var inpt_add = document.getElementById("inpt_add");
 		var inpt_name = document.getElementById("inpt_name");
-		var inpt_mobile = document.getElementById("inpt_mobile");
-		var btn_ws = document.getElementById("btn_ws");
+		var inpt_number = document.getElementById("inpt_number");
+		var inpt_content = document.getElementById("inpt_content");
+		 
+		 
 		
-		//合作餐厅
 		btn_sub.addEventListener("tap", function() {
-			// myselect.options[index].text;
-			mui.toast(btn_ws.options[btn_ws.value].text+"---"+inpt_hotname.value
-			+"----"+inpt_add.value)
-			// 提交成功后就返回登录界面
+			 if(inpt_name.value==""){
+				mui.toast("请输入姓名");
+				return;
+			}
+			if(inpt_number.value==""){
+			 	mui.toast("请输入电话");
+				return;
+			}
+			if(inpt_content.value==""){
+				mui.toast("请输入内容");
+				return;
+			}
+			
+			var param = {
+				restaurantId: localStorage.getItem("id"),
+				content:inpt_content.value,
+				name:inpt_name.value,
+				phone:  inpt_number.value,
+			};
+			
+			var url = APP_DOMAIN + 'saveOpinion';
+			request(url, param, function(json) {
+				mui.toast("意见反馈提交成功");
+			}, false, function() {
+				alert("意见反馈提交成功失败,请稍后再试");
+			});
 			
 		});
 	</script>

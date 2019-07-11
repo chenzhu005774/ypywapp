@@ -32,9 +32,9 @@
 				<a style="color: #000000; font-size:12px; ">是否自动接单</a>
 			</div>
 			<div style="margin-left:20px;margin-right:20px "> 
-					<select name="select" id="btn_ws" class="form-control">
-						<option value="0">是</option>
-						<option value="1">否</option>
+					<select name="select" id="btn_acc" class="form-control">
+						<option value="0">否</option>
+						<option value="1">是</option>
 					</select>
 				</div>
 
@@ -59,18 +59,23 @@
 
 		
 		var btn_sub = document.getElementById("btn_sub");
-		var inpt_hotname = document.getElementById("inpt_hotname");
-		var inpt_add = document.getElementById("inpt_add");
-		var inpt_name = document.getElementById("inpt_name");
-		var inpt_mobile = document.getElementById("inpt_mobile");
-		var btn_ws = document.getElementById("btn_ws");
+	  
+		var btn_acc = document.getElementById("btn_acc");
 		
 		//合作餐厅
 		btn_sub.addEventListener("tap", function() {
-			// myselect.options[index].text;
-			mui.toast(btn_ws.options[btn_ws.value].text+"---"+inpt_hotname.value
-			+"----"+inpt_add.value)
-			// 提交成功后就返回登录界面
+			
+				var param = {
+					 id: localStorage.getItem("id"),
+					autoReceipt:  btn_acc.value,
+				};
+			
+				var url = APP_DOMAIN + 'setRestaurant';
+				request(url, param, function(json) {
+					mui.toast("更新信息成功");
+				}, false, function() {
+					alert("更新信息失败,请稍后再试");
+				});
 			
 		});
 	</script>

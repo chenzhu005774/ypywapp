@@ -383,7 +383,7 @@ function MapPoint(position) {
 	 	    id: localStorage.getItem("id"),
 	 		lng: Lon,
 	 		lat: Lat,
-	 		clientid: clientid,
+	 		clientId: clientid,
 	  };
 	 
 	 var  url = APP_DOMAIN+'setRestaurant';

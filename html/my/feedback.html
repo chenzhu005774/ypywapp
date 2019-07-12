@@ -103,7 +103,7 @@
 			var url = APP_DOMAIN + 'saveOpinion';
 			request(url, param, function(json) {
 				mui.toast("意见反馈提交成功");
-			}, false, function() {
+			}, true, function() {
 				alert("意见反馈提交成功失败,请稍后再试");
 			});
 			

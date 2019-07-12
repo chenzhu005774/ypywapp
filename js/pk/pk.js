@@ -47,14 +47,14 @@ mui.plusReady(function() {
 	plus.push.addEventListener("click", function(msg) {
 		// 分析msg.payload处理业务逻辑   
 		// mui.alert(JSON.stringify(msg)); //获取通知栏的json数据 
-		mui.alert("有新订单消息");
+		mui.alert("有新订单消息,请注意查收");
 		getList();
 	}, false);
 	
 	//监听接收透传消息事件  
 	plus.push.addEventListener('receive', function(msg) {
 		//处理透传消息的业务逻辑代码  
-		mui.alert("有新订单消息");
+		mui.alert("receive有新订单消息");
 		getList();
 	}, false);
 	

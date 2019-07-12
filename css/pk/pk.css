@@ -8,6 +8,14 @@
 	right: 20px;
 	bottom: 0;
     margin: auto;  
+}.abuttonnoline{ 
+      width:60px;
+	  background-color:#852252;
+	  text-align:center; 
+	  border-radius:15px; 
+	  color:#ffffff;
+	  vertical-align:middle;
+	  float:right;
 }
 .abutton{ 
       width:60px;

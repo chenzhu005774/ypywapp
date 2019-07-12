@@ -1,5 +1,5 @@
 //api连接前缀
-var APP_DOMAIN = 'http://7b464f.natappfree.cc/api/';
+var APP_DOMAIN = 'http://t6yhex.natappfree.cc/api/';
 
 //为true输出日志
 var debug = true;

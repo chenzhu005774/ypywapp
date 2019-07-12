@@ -105,10 +105,23 @@ document.getElementById("feedback").addEventListener("tap", function() {
 document.getElementById("exitapp").addEventListener("tap", function() {
 
 	var btn = ["确定", "取消"];
-	mui.confirm('确认退出登录并关闭应用', '退出', btn, function(e) {
+	mui.confirm('确认退出登录并关闭应用不在接受推单消息？请保证网络畅通,否则无法下线接受推单消息', '退出', btn, function(e) {
 		if (e.index == 0) {
-			localStorage.setItem("islogin","no");
-			plus.runtime.quit();
+			
+			var clientid = "";
+			var param = {
+				    id: localStorage.getItem("id"),
+					clientId: clientid,
+			 };
+			var  url = APP_DOMAIN+'setRestaurant';
+			request(url, param, function(json) {
+				  localStorage.setItem("islogin","no");
+				  plus.runtime.quit();
+			}, false, function() {
+				 mui.toast("退出登录失败 您还能收到消息 请检查网络"); 
+			});
+			
+			
 		}
 	});
 });

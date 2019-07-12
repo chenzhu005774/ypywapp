@@ -74,7 +74,7 @@
 			 	var url = APP_DOMAIN + 'setRestaurant';
 			 	request(url, param, function(json) {
 			 		mui.toast("更新信息成功");
-			 	}, false, function() {
+			 	}, true, function() {
 			 		alert("更新信息失败,请稍后再试");
 			 	});
 			

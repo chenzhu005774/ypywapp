@@ -94,63 +94,90 @@
 
 				if (inpt_mobile.value.trim() == "") {
 					mui.toast("请输入手机号");
-					//inpt_mobile.focus();
+					return;
 				} else if (inpt_pwd.value.trim() == "") {
 					mui.toast("请输入密码");
+					return;
 				} else {
 					param = {
 						        username: inpt_mobile.value.trim(),
 								password: inpt_pwd.value.trim()
 					}
-					mui.ajax(APP_DOMAIN+'login', {
-						data: param,
-						dataType: 'json', //要求服务器返回json格式数据
-						type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST
-						timeout: 60000, //超时时间设置为6秒；
-						beforeSend: function() {
-							console.log('AJAX beforeSend --> '+APP_DOMAIN+'login');
-						},
-						success: function(data) {
-							
-							localStorage.setItem("id",data.data.id);
-							localStorage.setItem("resname",data.data.name);
-							localStorage.setItem("chainCode",data.data.chainCode);
-							localStorage.setItem("area",data.data.area);
-							localStorage.setItem("addr",data.data.addr);
-							localStorage.setItem("healthLevel",data.data.healthLevel);
-							localStorage.setItem("contact",data.data.contact);
-							localStorage.setItem("phone",data.data.phone);
-							localStorage.setItem("landline",data.data.landline);
-							localStorage.setItem("logoPath",data.data.logoPath);
-							localStorage.setItem("busLicense",data.data.busLicense);
-							localStorage.setItem("inTime",data.data.inTime);
-							localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
-							localStorage.setItem("username",data.data.username);
-							
-							
-                             localStorage.setItem("islogin","yes");
-
-							mui.toast("登录成功")
-							window.location.href='../main.html';
-							
-							// var backid = "main.html";
-							// var backurl = "../" + backid;
-							// backid = appPage.getParam("backid") || "main.html";
-							// backurl = "../" + backid;
-							// appPage.loginBack(backid, backurl);
-							console.log("<==========---------->"+localStorage.getItem("phone"));
-						},
-						error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
-							mui.toast("请求超时：请检查网络：" + type)
-						},
-						complete: function() {
-							//setRequestMsg("");
-						console.log('【AJAX:-->】【 + method + 】【命令执行完成】');
-						
-				      	}
-						});
 					
-				
+					var  url = APP_DOMAIN+'login';
+					request(url, param, function(data) {
+						
+						localStorage.setItem("id",data.data.id);
+						localStorage.setItem("resname",data.data.name);
+						localStorage.setItem("chainCode",data.data.chainCode);
+						localStorage.setItem("area",data.data.area);
+						localStorage.setItem("addr",data.data.addr);
+						localStorage.setItem("healthLevel",data.data.healthLevel);
+						localStorage.setItem("contact",data.data.contact);
+						localStorage.setItem("phone",data.data.phone);
+						localStorage.setItem("landline",data.data.landline);
+						localStorage.setItem("logoPath",data.data.logoPath);
+						localStorage.setItem("busLicense",data.data.busLicense);
+						localStorage.setItem("inTime",data.data.inTime);
+						localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
+						localStorage.setItem("username",data.data.username);
+						
+						
+						 localStorage.setItem("islogin","yes");
+						
+						mui.toast("登录成功")
+						window.location.href='../main.html'; 
+					}, true, function() {
+						mui.toast("请求超时：请检查网络：" + type)
+					});
+					
+// 					mui.ajax(APP_DOMAIN+'login', {
+// 						data: param,
+// 						dataType: 'json', //要求服务器返回json格式数据
+// 						type: 'GET', //HTTP请求类型，要和服务端对应，要么GET,要么POST
+// 						timeout: 60000, //超时时间设置为6秒；
+// 						beforeSend: function() {
+// 							console.log('AJAX beforeSend --> '+APP_DOMAIN+'login');
+// 						},
+// 						success: function(data) {
+// 							
+// 							localStorage.setItem("id",data.data.id);
+// 							localStorage.setItem("resname",data.data.name);
+// 							localStorage.setItem("chainCode",data.data.chainCode);
+// 							localStorage.setItem("area",data.data.area);
+// 							localStorage.setItem("addr",data.data.addr);
+// 							localStorage.setItem("healthLevel",data.data.healthLevel);
+// 							localStorage.setItem("contact",data.data.contact);
+// 							localStorage.setItem("phone",data.data.phone);
+// 							localStorage.setItem("landline",data.data.landline);
+// 							localStorage.setItem("logoPath",data.data.logoPath);
+// 							localStorage.setItem("busLicense",data.data.busLicense);
+// 							localStorage.setItem("inTime",data.data.inTime);
+// 							localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
+// 							localStorage.setItem("username",data.data.username);
+// 							
+// 							
+//                              localStorage.setItem("islogin","yes");
+// 
+// 							mui.toast("登录成功")
+// 							window.location.href='../main.html';
+// 							
+// 							// var backid = "main.html";
+// 							// var backurl = "../" + backid;
+// 							// backid = appPage.getParam("backid") || "main.html";
+// 							// backurl = "../" + backid;
+// 							// appPage.loginBack(backid, backurl);
+// 							console.log("<==========---------->"+localStorage.getItem("phone"));
+// 						},
+// 						error: function(xhr, type, errorThrown) { //失败，打一下失败的类型，主要用于调试和用户体验
+// 							mui.toast("请求超时：请检查网络：" + type)
+// 						},
+// 						complete: function() {
+// 							//setRequestMsg("");
+// 						console.log('【AJAX:-->】【 + method + 】【命令执行完成】');
+// 						
+// 				      	}
+// 						});
 
 				}
 

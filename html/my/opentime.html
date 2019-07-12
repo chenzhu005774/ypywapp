@@ -99,7 +99,7 @@
 			var url = APP_DOMAIN + 'setRestaurant';
 			request(url, param, function(json) {
 				mui.toast("更新信息成功");
-			}, false, function() {
+			}, true, function() {
 				alert("更新信息失败,请稍后再试");
 			});
 
@@ -109,7 +109,7 @@
 			var dtpicker = new mui.DtPicker({
 				type: "time", //设置日历初始视图模式
 				beginDate: new Date(1950, 04, 25), //设置开始日期
-				endDate: new Date() //设置开始日期
+				endDate: new Date(2099,04,25) //设置开始日期
 			});
 			dtpicker.show(function(selectItems) {
 				inpt_open.value = selectItems.text;
@@ -120,7 +120,7 @@
 			var dtpicker = new mui.DtPicker({
 				type: "time", //设置日历初始视图模式
 				beginDate: new Date(1950, 04, 25), //设置开始日期
-				endDate: new Date() //设置开始日期
+				endDate: new Date(2099,04,25) //设置开始日期
 			});
 			dtpicker.show(function(selectItems) {
 				inpt_close.value = selectItems.text;

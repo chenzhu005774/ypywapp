@@ -41,7 +41,7 @@ mui.plusReady(function() {
 	
 	
 	//  获取定位 上报 顺便上报个推ID
-	plus.geolocation.getCurrentPosition(MapPoint, function(e) { mui.toast("获取位置信息失败请设置开启权限否则无法接单");});
+	plus.geolocation.getCurrentPosition(MapPoint, function(e) { mui.toast("获取位置信息失败请设置开启权限否则无法接单:"+e);});
 	
 		
 	plus.push.addEventListener("click", function(msg) {

@@ -37,7 +37,7 @@ mui.plusReady(function() {
 		var name = document.getElementById("name");
 		name.innerText = json.data.receiveName+':';
 		var phonenumber = document.getElementById("phonenumber");
-        phonenumber.innerText = json.data.receivePhone;
+        phonenumber.innerText = json.data.receivePhone+"       " ;
 		var addr = document.getElementById("addr");
 		addr.innerText = json.data.receiveAddr;
 		 // 计算订单的总价格

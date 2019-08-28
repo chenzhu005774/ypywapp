@@ -22,21 +22,21 @@
 		<div class="mui-content">
 			<div id="content" class="mui-table-view tblv-nl"   style="border-radius: 6px ;background-color: #ffffff; margin: 0.625rem;">
 				 <!-- 上方黄色的 用户信息 -->
-				 <div style="background-color:#FF8400 ;height: 80px;border-radius: 6px 6px 0px 0px ; position: relative;" >
-				   <div style="display:inline-block; margin:10px">
+				 <div style="background-color:#FF8400 ;height: 80px;border-radius: 6px 6px 0px 0px ; position: relative;display: flex;flex-direction: column;" >
+				   <div style=" margin:10px">
 				   			<a id="name"   style="color:#FFFFFF;">陈先生:</a>
 				   			<a id="phonenumber"   style="color:#FFFFFF;">18252545124</a>
 				   </div>
 				   <div style="display:inline-block; margin-left:10px">
 				   		    <a   style="color:#FFFFFF;">地址:</a>
-				   		    <a id="addr"   style="color:#FFFFFF;">北京市朝阳区天安门广场124号</a>
+				   		    <a id="addr"   style="color:#FFFFFF;">北京市朝</a>
 				   </div>
 				   <img  style=" margin-top: -6.25rem;   position: absolute; left: 0; right: 0;  bottom: 0px;    " src="../../images/ypyw/order_stripe.png" /> 
 				 </div>
-				 <!-- 下面菜品的列表 其中信息也一起了 -->
+				 <!-- 下面菜品的列表 其中信息也一起了 -->   
 				 <div >
 					 <div class="mui-scroll">
-					 	<ul class="mui-table-view tblv-nl" id="food_list_warp"></ul>
+					 	<ul class="mui-table-view tblv-nl" id="food_list_warp"></ul> 
 				     </div>
 				 </div>
 				 
@@ -49,7 +49,7 @@
 		{{each data.foodList as item}}
 			
 			<li class="mui-table-view-cell mui-media">
-			     <img  class="mui-media-object mui-pull-left" src="{{item.thumbnail_pic_s}}"  style="width: 40px;height: 40px; " >
+			     <img  class="mui-media-object mui-pull-left" src="http://47.94.135.234/getData/showImage?imagePath={{item.thumbnail_pic_s}}"  style="width: 40px;height: 40px; " >
 			     <div class="mui-media-body">
 			            <p id="name" class="mui-ellipsis">{{item.foodName}}</p>
 			            <a id="money" style="color:#FF8400;">￥{{item.price}}</a>

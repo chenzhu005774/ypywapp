@@ -60,6 +60,21 @@
 		var btn_sub = document.getElementById("btn_sub");
 		var inpt_packfree = document.getElementById("inpt_packfree");
 	 
+	  var getdataurl = APP_DOMAIN + 'getRestaurant';
+	  var paramgetdata = {
+	 	id: localStorage.getItem("id"),
+	 
+	 };
+	 	mui.plusReady(function() {
+	 				request(getdataurl, paramgetdata, function(json) {
+	 					inpt_packfree.value = json.data.packFee;
+						mui.toast("获取信息成功");
+	 					 }, true, function() {
+	 							alert("获取信息失败");
+	 						});
+	 			});
+	 
+	 
 		
 		btn_sub.addEventListener("tap", function() {
 			if(inpt_packfree.value==""){

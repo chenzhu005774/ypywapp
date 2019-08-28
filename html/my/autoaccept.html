@@ -62,6 +62,21 @@
 	  
 		var btn_acc = document.getElementById("btn_acc");
 		
+		 var getdataurl = APP_DOMAIN + 'getRestaurant';
+		 var paramgetdata = {
+			id: localStorage.getItem("id"),
+		
+		};
+			mui.plusReady(function() {
+						request(getdataurl, paramgetdata, function(json) {
+							btn_acc.value = json.data.autoReceipt;
+								mui.toast("获取信息成功");
+							 }, true, function() {
+									alert("获取信息失败");
+								});
+					});
+		
+		
 		//合作餐厅
 		btn_sub.addEventListener("tap", function() {
 			

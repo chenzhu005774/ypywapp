@@ -31,7 +31,7 @@
 
 			<div class="mui-input-row" style="background: #E6E6E6; margin: 20px;  ">
 				<label><img src="../../images/ypyw/login_icon_phone.png" style="width: 20px;height: 25px;"></label>
-				<input type="text" id='inpt_mobile' class="mui-input-clear" placeholder="请输入手机号">
+				<input type="text" id='inpt_mobile' class="mui-input-clear" placeholder="请输入账号">
 			</div>
 
 			<div class="mui-input-row" style="background: #E6E6E6; margin: 20px;  ">
@@ -93,7 +93,7 @@
 			btn_login.addEventListener("tap", function() {
 
 				if (inpt_mobile.value.trim() == "") {
-					mui.toast("请输入手机号");
+					mui.toast("请输入账号");
 					return;
 				} else if (inpt_pwd.value.trim() == "") {
 					mui.toast("请输入密码");

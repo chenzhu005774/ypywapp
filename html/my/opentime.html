@@ -70,11 +70,31 @@
 		mui.back = function(event) {
 			plus.webview.currentWebview().close();
 		}
+		
+    
 
 		var btn_sub = document.getElementById("btn_sub");
 		var inpt_open = document.getElementById("inpt_open");
 		var inpt_close = document.getElementById("inpt_close");
 		var btn_ws = document.getElementById("btn_ws");
+		
+		 var getdataurl = APP_DOMAIN + 'getRestaurant';
+		 var paramgetdata = {
+		 	id: localStorage.getItem("id"),
+		 
+		 };
+		 
+		 	mui.plusReady(function() {
+				request(getdataurl, paramgetdata, function(json) {
+					inpt_open.value = json.data.busHourStart;
+					inpt_close.value = json.data.busHourEnd;
+					btn_ws.value =json.data.isAllDay;
+					 }, true, function() {
+							alert("获取信息失败");
+						});
+			});
+		 
+		
 		
 		
 		btn_sub.addEventListener("tap", function() {
@@ -90,7 +110,7 @@
 			
 			
 			var param = {
-				 id: localStorage.getItem("id"),
+				id: localStorage.getItem("id"),
 				busHourStart:inpt_open.value,
 				busHourEnd:inpt_close.value,
 				isAllDay:  btn_ws.value,

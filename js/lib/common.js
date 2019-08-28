@@ -1103,9 +1103,9 @@ function request(method, parm, callback, showwait, errcallback, shownetmsg) {
 				if(shownetmsg)
 					mui.toast("请求超时：请检查网络：" + type)
 			} else {
-				setRequestMsg("服务器累了");
+				setRequestMsg("操作失败,请检查信息");
 				if(shownetmsg)
-					mui.toast("服务器累了：" + type)
+					mui.toast("操作失败" )
 			}
 			if(errcallback) {
 				errcallback();

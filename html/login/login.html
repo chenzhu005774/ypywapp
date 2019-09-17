@@ -107,26 +107,32 @@
 					var  url = APP_DOMAIN+'login';
 					request(url, param, function(data) {
 						
-						localStorage.setItem("id",data.data.id);
-						localStorage.setItem("resname",data.data.name);
-						localStorage.setItem("chainCode",data.data.chainCode);
-						localStorage.setItem("area",data.data.area);
-						localStorage.setItem("addr",data.data.addr);
-						localStorage.setItem("healthLevel",data.data.healthLevel);
-						localStorage.setItem("contact",data.data.contact);
-						localStorage.setItem("phone",data.data.phone);
-						localStorage.setItem("landline",data.data.landline);
-						localStorage.setItem("logoPath",data.data.logoPath);
-						localStorage.setItem("busLicense",data.data.busLicense);
-						localStorage.setItem("inTime",data.data.inTime);
-						localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
-						localStorage.setItem("username",data.data.username);
+						if(data.code==200){
+							
+							localStorage.setItem("id",data.data.id);
+							localStorage.setItem("resname",data.data.name);
+							localStorage.setItem("chainCode",data.data.chainCode);
+							localStorage.setItem("area",data.data.area);
+							localStorage.setItem("addr",data.data.addr);
+							localStorage.setItem("healthLevel",data.data.healthLevel);
+							localStorage.setItem("contact",data.data.contact);
+							localStorage.setItem("phone",data.data.phone);
+							localStorage.setItem("landline",data.data.landline);
+							localStorage.setItem("logoPath",data.data.logoPath);
+							localStorage.setItem("busLicense",data.data.busLicense);
+							localStorage.setItem("inTime",data.data.inTime);
+							localStorage.setItem("hygieneLicensePath",data.data.hygieneLicensePath);
+							localStorage.setItem("username",data.data.username);
+							
+							
+							 localStorage.setItem("islogin","yes");
+							
+							mui.toast("登录成功")
+							window.location.href='../main.html'; 
+						}else{
+							mui.toast("登录失败,请检查信息");
+						}
 						
-						
-						 localStorage.setItem("islogin","yes");
-						
-						mui.toast("登录成功")
-						window.location.href='../main.html'; 
 					}, true, function() {
 						mui.toast("请求超时：请检查网络：" + type)
 					});

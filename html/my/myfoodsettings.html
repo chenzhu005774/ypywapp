@@ -14,22 +14,25 @@
 				'../../css/index/citySelect.css', '../../css/index/citySelect.css','../../../css/pk/pk.css']);
 		</script>
 	</head>
-
+ 
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  style=" color: #FF8400;"></a>
 			
 				<h1 class="mui-title">菜品设置</h1>  
-			 
+			  
 			<!-- <a class="mui-action-back mui-pull-right head-rightbtn" id="backBtn" style="display: none;">取消</a> -->
 			<div style="background: #000000;" style="width: 100px;height: 50px; ">
 				<!-- <a class="mui-pull-right head-rightbtn "  style="width: 100px;height: 50px; " >批量操作</a> -->
-				 <!-- <a  id="alltodo" class="abuttonnobg  mui-pull-right head-rightbtn"  style=" width: 100px;height: 50px;" >批量操作</a> -->
+				
+               <!-- <button id="pltodo" type="button" style=" width: 45px;height: 25px; font-size:10sp" class="mui-btn abuttonnobg  mui-pull-right head-rightbtn">默认</button> -->
+				 <!-- <a  id="pltodo" class="abuttonnobg  mui-pull-right head-rightbtn"  style=" width: 100px;height: 50px;" >批量</a> -->
+				  <!-- <a   class="abutton littlelist" id="pltodo" style=" width: 100px;height: 50px;"  >批量</a>	 -->
 			</div>
 			
 		</header>
 		
-		<div class="mui-content  ">
+		<div class="mui-content  " style="margin-bottom: 70px;">
 			
 			
 			<div class="mui-input-row mui-search" style="margin-left: 20px;margin-right:20px;margin-top: 15px;">
@@ -40,17 +43,37 @@
 				<ul class="mui-table-view tblv-nl mtb15" id="list_warp_foodsettings"  >
 					
 				 <div class="nodata">暂无内容</div>
-					 
+			<li class="mui-table-view-cell mui-media"  >
+							
+							   	<div  class="mui-media-object mui-pull-left ">  
+							        <input id="checkbox" style="display: block; " name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}">
+							    </div>
+							   <img  class="mui-media-object mui-pull-left" src="http://47.94.135.234/getData/showImage?imagePath={{item.imagePath}}"  style="width: 50px;height: 50px; " >
+			     
+				  <div class="mui-media-body" style=" float:right;margin-right: 20px; ">
+			             <p id="name" class="mui-ellipsis">销售中</p>
+			             <a   class="abutton littlelist"  data-id="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}"style="width:50px;vertical-align:middle;">下架</a>
+									
+			     </div>
+				  
+				 <div class="mui-media-body"  >
+			            <p id="name" class="mui-ellipsis">123</p> 
+			            <a id="money" style="color:#FF8400;">123</a>
+			      </div>
+				 
+				  
+			 </li>
 				</ul> 
-			</div> 
-			<!-- <div style=" height:50px; background: #f0f0f0f; width: 100%;" class="mycheckbox" >
-					
-					 <a   class="abutton littlelist"  style="  bottom:15px ; margin-right: 20px;width: 100px;" >一键下线</a>	
-					 <a   class="abutton littlelist"  style="  bottom:15px ;margin-right: 20px; width: 100px;" >一键上线</a>
-					 <a   class="abutton littlelist"  style="  bottom:15px ;margin-right: 20px; width: 50px; " >全选</a>	
-			</div> -->
+			</div>  
 			
 		</div> 
+
+           <div id="view" style=" height:50px; background: #f0f0f0f; width: 100%;position:fixed;bottom:0px;background-color: #A2A2A5;display:block" class="mycheckbox" >
+					
+					 <a   class="abutton littlelist" id="loseline" style=" margin-top: 15px;  margin-right: 20px; width: 100px;" >一键下线</a>	
+					 <a   class="abutton littlelist" id="online"  style=" margin-top: 15px; margin-right: 20px; width: 100px;" >一键上线</a>
+					 <a   class="abutton littlelist" id="alltodo"  style=" margin-top: 15px;  margin-right: 20px; width: 50px; " >全选</a>	
+			</div>
 
        <!--status /**1上架状态  0下架状态**/ -->  
 		<script type="text/html" id="list_view_foodsettings">
@@ -62,7 +85,7 @@
 			   <li class="mui-table-view-cell mui-media"  >
 				
 				   	<div  class="mui-media-object mui-pull-left ">  
-				        <!-- <input id="checkbox" name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}"> -->
+				        <input id="checkbox" style="display: block;" name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}">
 				    </div>
 				   <img  class="mui-media-object mui-pull-left" src="http://47.94.135.234/getData/showImage?imagePath={{item.imagePath}}"  style="width: 50px;height: 50px; " >
 			        

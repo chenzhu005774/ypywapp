@@ -106,8 +106,7 @@
 					
 					var  url = APP_DOMAIN+'login';
 					request(url, param, function(data) {
-						
-						if(data.code==200){
+						if(data.code==0){
 							
 							localStorage.setItem("id",data.data.id);
 							localStorage.setItem("resname",data.data.name);
@@ -130,7 +129,7 @@
 							mui.toast("登录成功")
 							window.location.href='../main.html'; 
 						}else{
-							mui.toast("登录失败,请检查信息");
+							mui.toast(data.msg);
 						}
 						
 					}, true, function() {

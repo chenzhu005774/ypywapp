@@ -67,13 +67,20 @@ mui.plusReady(function() {
 		if (view.style.display == "block") {
 			view.style.display = "none";
 			for (var i = 0; i < ele.length; i++) {
-				ele[i].style.display = "none";
+				// ele[i].style.display = "none";
+				
+				document.getElementById("checkbox").classList.add("mui-hidden");
+				
+				
+				
 			}
 		} else {
 			view.style.display = "block";
 			
 			for (var i = 0; i < ele.length; i++) {
-				ele[i].style.display = "block";
+				// ele[i].style.display = "block";
+				document.getElementById("checkbox").classList.add("mui-visibility");
+				document.getElementById("checkbox").classList.remove("mui-hidden");
 			}
 			
 		}
@@ -216,7 +223,7 @@ mui.plusReady(function() {
 		});
 
 	});
-
+	document.getElementById("checkbox").classList.remove("mui-hidden");
 });
 
 function loadData() {

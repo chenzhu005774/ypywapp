@@ -19,15 +19,15 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  style=" color: #FF8400;"></a>
 			
-				<h1 class="mui-title">菜品设置</h1>  
+				<h1 class="mui-title">菜品设置</h1>   
 			  
 			<!-- <a class="mui-action-back mui-pull-right head-rightbtn" id="backBtn" style="display: none;">取消</a> -->
 			<div style="background: #000000;" style="width: 100px;height: 50px; ">
 				<!-- <a class="mui-pull-right head-rightbtn "  style="width: 100px;height: 50px; " >批量操作</a> -->
 				
                <!-- <button id="pltodo" type="button" style=" width: 45px;height: 25px; font-size:10sp" class="mui-btn abuttonnobg  mui-pull-right head-rightbtn">默认</button> -->
-				 <!-- <a  id="pltodo" class="abuttonnobg  mui-pull-right head-rightbtn"  style=" width: 100px;height: 50px;" >批量</a> -->
-				  <!-- <a   class="abutton littlelist" id="pltodo" style=" width: 100px;height: 50px;"  >批量</a>	 -->
+				 <!-- <div  id="pltodo" class="  mui-pull-right head-rightbtn"  style=" width: 100px;height: 50px;background-color: ;" > 批量操作 </div> -->
+				<a id="pltodo" class=" mui-icon  mui-pull-right mui-a-color mui-icon " style="font-size: 14px;margin-top: 4px;">批量操作</a>
 			</div>
 			
 		</header>
@@ -65,8 +65,8 @@
 			 </li>
 				</ul> 
 			</div>  
-			
-		</div> 
+			 
+		</div>
 
            <div id="view" style=" height:50px; background: #f0f0f0f; width: 100%;position:fixed;bottom:0px;background-color: #A2A2A5;display:block" class="mycheckbox" >
 					
@@ -85,7 +85,7 @@
 			   <li class="mui-table-view-cell mui-media"  >
 				
 				   	<div  class="mui-media-object mui-pull-left ">  
-				        <input id="checkbox" style="display: block;" name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}">
+				        <input id="checkbox" style="" name="checkbox" type="checkbox" class="mycheckbox " value="{{item.id}}||{{item.restaurantId}}||{{item.isUpDown}}">
 				    </div>
 				   <img  class="mui-media-object mui-pull-left" src="http://47.94.135.234/getData/showImage?imagePath={{item.imagePath}}"  style="width: 50px;height: 50px; " >
 			        

@@ -223,7 +223,7 @@ mui.plusReady(function() {
 		});
 
 	});
-	document.getElementById("checkbox").classList.remove("mui-hidden");
+	
 });
 
 function loadData() {

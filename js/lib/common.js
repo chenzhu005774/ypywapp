@@ -1,6 +1,6 @@
 //api连接前缀
 var APP_DOMAIN = 'http://47.94.135.234:80/api/';
-
+// var APP_DOMAIN = 'http://192.168.1.18:8080/api/';
 //为true输出日志  
 var debug = true;
 

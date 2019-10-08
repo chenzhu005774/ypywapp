@@ -50,7 +50,8 @@ mui.plusReady(function() {
 });
 //下拉刷新具体业务实现
 function pulldownRefresh() {
-	loadData();
+	appPage.endPullRefresh();
+	// loadData();
 }
 
 function initPage() {
